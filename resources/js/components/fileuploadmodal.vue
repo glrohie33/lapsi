@@ -58,6 +58,7 @@
                         :src="`${index_url}/public/images/imagefile.png`"
                         class="f-img img-thumbnail"
                       />
+                      <i>{{file.filename}}</i>
                       <input
                         type="checkbox"
                         class="form-control"

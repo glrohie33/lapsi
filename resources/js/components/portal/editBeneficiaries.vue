@@ -204,6 +204,7 @@
                                 <i class="feather">add files</i>
                               </button>
                             </div>
+                            <i>{{x.filename}}</i>
                           </div>
                         </div>
                         <div class="col-md-12">

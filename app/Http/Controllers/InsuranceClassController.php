@@ -32,9 +32,19 @@ class InsuranceClassController extends Controller
             ->leftJoin('underwriters_allocations', 'insurance_classes.id', '=', 'underwriters_allocations.insurance_class_id')
             ->leftJoin('underwriters AS T', DB::raw(" `T`.`id` MEMBER OF(underwriters_allocations.underwriters)"), "=", DB::raw(1))
             ->leftJoin('underwriters_ranks as U', 'T.rank_id', '=', 'U.id')
-            ->select('insurance_classes.*', 'insurance_types.name as type_name', 'underwriters_allocations.id as allocation_id', 'underwriters_allocations.insurance_class_id', 'underwriters_allocations.underwriters_allocations', DB::raw("JSON_ARRAYAGG(JSON_OBJECT('id',`T`.`id`,'name',`T`.`registered_name`,'rank',`U`.`name`)) as underwriters_details"))
-            ->groupBy('insurance_classes.id', 'underwriters_allocations.id')
+            ->select('insurance_classes.*', 'insurance_types.name as type_name', 'underwriters_allocations.id as allocation_id', 'underwriters_allocations.insurance_class_id', 'underwriters_allocations.underwriters_allocations', DB::raw("JSON_ARRAYAGG(JSON_OBJECT('id',`T`.`id`,'name',`T`.`registered_name`,'rank',`U`.`name`)) as underwriters_details"));
+        if ($request->filter > -1) {
+            if ($request->filter > 0) {
+                $insuranceclass = $insuranceclass->whereNotNull('underwriters_allocations.id');
+            } else {
+                $insuranceclass = $insuranceclass->where('underwriters_allocations.id');
+            }
+        }
+
+        $insuranceclass = $insuranceclass->groupBy('insurance_classes.id', 'underwriters_allocations.id')
             ->get();
+
+
         $total = InsuranceClass::count();
         return response()->json(compact('insuranceclass', 'total'));
     }

@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\InsuranceClass;
 use App\Policy;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Validator;
 
 class PolicyController extends Controller
@@ -14,9 +15,22 @@ class PolicyController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Request $request)
     {
         //
+        $offset = ($request->page * $request->limit) - $request->limit;
+        $parent = DB::table('policies');
+        $policies = DB::table('policies')
+            ->leftJoin('businesses', 'policies.business_id', '=', 'businesses.policy_id')
+            ->offset($offset)->limit($request->limit);
+        if ($request->sort != 'undefined') {
+            $order = ($request->desc) ? 'desc' : 'asc';
+            $policies = $policies->orderBy($request->sort, $order);
+        }
+
+        $policies = $policies->select('policies.*', 'businesses.id as business')->get();
+        $total = Policy::count();
+        return response()->json(compact('policies', 'total'));
     }
 
     /**

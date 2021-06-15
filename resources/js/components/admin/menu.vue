@@ -95,6 +95,104 @@ export default {
           icon: "mdi-account-key"
         },
         {
+          title: "Underwriters",
+          items: [
+            {
+              title: "List",
+              path: { path: "/admin/underwriter" }
+            },
+            {
+              title: "Add New",
+              path: { path: "/admin/addunderwriter" }
+            }
+          ],
+          icon: "mdi-account-key"
+        },
+        {
+          title: "Brokers",
+          items: [
+            {
+              title: "List",
+              path: { path: "/admin/broker" }
+            },
+            {
+              title: "Add New",
+              path: { path: "/admin/addbroker" }
+            }
+          ],
+          icon: "mdi-account-key"
+        },
+        {
+          title: "Business",
+          items: [
+            {
+              title: "List",
+              path: { path: "/admin/business" }
+            },
+            {
+              title: "Add New",
+              path: { path: "/admin/addbusiness" }
+            }
+          ],
+          icon: "mdi-account-key"
+        },
+        {
+          title: "Policy",
+          items: [
+            {
+              title: "List",
+              path: { path: "/admin/policy" }
+            },
+            {
+              title: "Add New",
+              path: { path: "/admin/addpolicy" }
+            }
+          ],
+          icon: "mdi-account-key"
+        },
+        {
+          title: "Asset",
+          items: [
+            {
+              title: "List",
+              path: { path: "/admin/asset" }
+            },
+            {
+              title: "Add New",
+              path: { path: "/admin/addasset" }
+            }
+          ],
+          icon: "mdi-account-key"
+        },
+        {
+          title: "Asset Types",
+          items: [
+            {
+              title: "List",
+              path: { path: "/admin/assettype" }
+            },
+            {
+              title: "Add New",
+              path: { path: "/admin/addassettype" }
+            }
+          ],
+          icon: "mdi-account-key"
+        },
+        {
+          title: "Insurance Classes",
+          items: [
+            {
+              title: "List",
+              path: { path: "/admin/insuranceclass" }
+            },
+            {
+              title: "Add New",
+              path: { path: "/admin/addinsuranceclass" }
+            }
+          ],
+          icon: "mdi-account-key"
+        },
+        {
           title: "Admins",
           items: [
             {

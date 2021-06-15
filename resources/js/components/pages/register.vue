@@ -341,6 +341,7 @@
                             class="img-thumbnail user-file"
                             :src="`${index_url}/public/images/imagefile.png`"
                           />
+                          <i>{{x.filename}}</i>
                           <button
                             class="btn-danger btn-sm"
                             style="position: absolute; right:10px;z-index:999999;"

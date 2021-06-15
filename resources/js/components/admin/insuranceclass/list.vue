@@ -47,9 +47,9 @@
                             <div class="form-group" style="float:right;">
                               <h6>Sort By Status</h6>
                               <select v-model="filter" class="form-control select2-icons">
-                                <option value data-icon="fa fa-male">All Insuranceclass</option>
-                                <option value="allocated">Allocated Insuranceclass</option>
-                                <option value="unallocated">Allocated Insuranceclass</option>
+                                <option value="-1" data-icon="fa fa-male">All Insuranceclass</option>
+                                <option value="1">Allocated Insuranceclass</option>
+                                <option value="0">Allocated Insuranceclass</option>
                               </select>
                             </div>
                           </div>
@@ -283,7 +283,7 @@ export default {
       leadUnderwriter: "",
       leadUnderwriters: [],
       coUnderwriters: [],
-      filter: ""
+      filter: "-1"
     };
   },
   watch: {
@@ -301,6 +301,11 @@ export default {
           this.allocateButton = false;
         }
       }
+    },
+    filter: {
+      handler() {
+        this.getData();
+      }
     }
   },
   computed: {},
@@ -315,7 +320,7 @@ export default {
       var desc = sortDesc[0];
       axios
         .get(
-          `${index_url}/api/insuranceclass?page=${page}&limit=${itemsPerPage}&sort=${sort}&desc=${desc}`
+          `${index_url}/api/insuranceclass?page=${page}&limit=${itemsPerPage}&sort=${sort}&desc=${desc}&filter=${this.filter}`
         )
         .then(resp => {
           this.items = resp.data.insuranceclass;
