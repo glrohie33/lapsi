@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\AssetInsurance;
 use App\Business;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Validator;
 
 class BusinessController extends Controller
@@ -14,9 +15,27 @@ class BusinessController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Request $request)
     {
+
         //
+        $offset = ($request->page * $request->limit) - $request->limit;
+        $parent = DB::table('businesses');
+        $businesses = DB::table('businesses')
+            ->leftJoin('policies', 'businesses.policy_id', '=', 'policies.business_id')
+            ->leftJoin('asset_insurances', 'businesses.id', '=', 'asset_insurances.business_id')
+            ->leftJoin('agency', 'businesses.agency', '=', 'agency.id')
+            ->leftJoin('insurance_classes', 'businesses.business_class', '=', 'insurance_classes.id')
+            ->leftJoin('insurance_types', 'businesses.business_type', '=', 'insurance_types.id')
+            ->offset($offset)->limit($request->limit);
+        if ($request->sort != 'undefined') {
+            $order = ($request->desc) ? 'desc' : 'asc';
+            $businesses = $businesses->orderBy($request->sort, $order);
+        }
+
+        $businesses = $businesses->select('businesses.*', 'policies.id as policy', DB::raw("COUNT(`asset_insurances`.`id`) AS insured_assets"), 'agency.name as agency_name', 'insurance_classes.name as business_class_name', 'insurance_types.name as business_type_name')->groupBy('businesses.id', 'policies.id')->get();
+        $total = Business::count();
+        return response()->json(compact('businesses', 'total'));
     }
 
     /**
