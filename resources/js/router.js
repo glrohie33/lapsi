@@ -72,7 +72,7 @@ if (current_url.includes("localhost"))
 var routes = [{
     path: "/",
     name: 'home',
-    component: Home
+    component:Login
 }, {
     path: "/login",
     name: 'login',
