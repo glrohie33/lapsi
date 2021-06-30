@@ -36,6 +36,7 @@ Route::resource('asset', 'AssetController');
 Route::resource('policy', 'PolicyController');
 Route::resource('business', 'BusinessController');
 Route::resource('insuranceclass', 'InsuranceClassController');
+Route::resource('claim', 'ClaimController');
 Route::get('rolepermissions', 'RoleController@permissions');
 Route::get('agency/types', 'AgencyController@agencyType');
 Route::get('agencywithtype', 'AgencyTypeController@agencyWithType');

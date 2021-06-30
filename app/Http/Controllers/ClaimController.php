@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Claim;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Validator;
 
 class ClaimController extends Controller
 {
@@ -36,6 +37,18 @@ class ClaimController extends Controller
     public function store(Request $request)
     {
         //
+        $input = $request->all();
+        $rules = ['agency' => 'Required', 'claimant_name' => 'required', 'claimant_phone' => 'Required', 'claimant_email' => 'Required', 'claim_type' => 'Required', 'claim_class' => 'Required', 'claim_description' => 'Required',  'contact_name' => 'Required', 'contact_phone' => 'Required', 'files' => 'Required'];
+        $validator = Validator::make($input, $rules);
+        if ($validator->fails()) {
+            $status = false;
+            $errors = $validator->errors();
+        } else {
+            $claim = Claim::create($input);
+            $status = true;
+        }
+
+        return response()->json(compact('errors', 'status'));
     }
 
     /**

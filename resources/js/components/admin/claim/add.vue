@@ -23,7 +23,11 @@
                 </div>
                 <div class="card-content">
                   <div class="card-body">
-                    <form class="form form-vertical" style="width:90%; margin:0px auto;">
+                    <form
+                      onsubmit="return false"
+                      class="form form-vertical"
+                      style="width:90%; margin:0px auto;"
+                    >
                       <div class="form-body">
                         <div class="row">
                           <div
@@ -149,7 +153,7 @@
                           <div class="col-md-6 form-group">
                             <label>Asset Type</label>
                             <select
-                              v-model="assetType"
+                              v-model="claim.asset_type"
                               class="form-control select2-icons"
                               @change="setAssets()"
                             >
@@ -167,16 +171,16 @@
                             >{{err}}</p>
                           </div>
                           <div class="col-md-6 form-group">
-                            <label>Insured Name</label>
-                            <input type v-model="claim.insured_name" class="form-control" />
+                            <label>Claimant Name</label>
+                            <input type v-model="claim.claimant_name" class="form-control" />
                           </div>
                           <div class="col-md-6 form-group">
-                            <label>Insured Phone</label>
-                            <input type v-model="claim.insured_phone" class="form-control" />
+                            <label>Claimant Phone</label>
+                            <input type v-model="claim.claimant_phone" class="form-control" />
                           </div>
                           <div class="col-md-6 form-group">
-                            <label>Insured Email</label>
-                            <input type v-model="claim.insured_email" class="form-control" />
+                            <label>Claimant Email</label>
+                            <input type v-model="claim.claimant_email" class="form-control" />
                           </div>
                           <div class="col-md-6 form-group">
                             <label>Claim value</label>
@@ -202,6 +206,35 @@
                             <label>Claim Description</label>
                             <textarea type v-model="claim.claim_description" class="form-control"></textarea>
                           </div>
+                          <div class="col-md-12">
+                            <div class="row">
+                              <div class="col-md-2" v-for="(x,ind) in claim.files" :key="ind">
+                                <img
+                                  v-if="x.file_type == 'image'"
+                                  class="img-thumbnail user-file"
+                                  :src="x.url"
+                                />
+                                <img
+                                  v-else
+                                  class="img-thumbnail user-file"
+                                  :src="`${index_url}/public/images/imagefile.png`"
+                                />
+                                <i>{{x.filename}}</i>
+                                <button
+                                  class="btn-danger btn-sm"
+                                  style="position: absolute; right:10px;z-index:999999;"
+                                  @click="removeFile(ind)"
+                                >
+                                  <i class="feather icon-minus"></i>
+                                </button>
+                              </div>
+                            </div>
+                          </div>
+                          <div class="col-md-12">
+                            <button class="btn-danger btn-sm" @click="showBox(index)">
+                              <i class="feather">add files</i>
+                            </button>
+                          </div>
                         </div>
                       </div>
                     </form>
@@ -223,18 +256,33 @@
         <!-- Column selectors with Export Options and print table -->
       </div>
     </div>
+    <v-dialog v-model="showbox" id="selectFile">
+      <FileUpload
+        :user="user"
+        :title="ftitle"
+        :inFiles="claim.files"
+        @save="addFiles"
+        @cancel="closeBox"
+      ></FileUpload>
+    </v-dialog>
   </div>
 </template>
 <script>
+import fileupload from "../../fileuploadmodal.vue";
+
 export default {
   props: ["user", "role"],
+  components: {
+    FileUpload: fileupload
+  },
   data() {
     return {
       claim: {
-        insured_name: "",
+        claimant_name: "",
         agency: "",
-        insured_phone: "",
-        insured_email: "",
+        claimant_phone: "",
+        claimant_email: "",
+        asset_type: "",
         claim_class: "",
         claim_type: "",
         claim_description: "",
@@ -246,7 +294,8 @@ export default {
         policy_id: "",
         assets: "",
         mda_phone: "",
-        mda_email: ""
+        mda_email: "",
+        files: []
       },
       leadUnderwriter: "",
       insurances: [],
@@ -257,7 +306,9 @@ export default {
       assetType: 0,
       claimTypes: [],
       assetTypes: [],
-      assets: []
+      assets: [],
+      showbox: false,
+      ftitle: "Select Claim files"
     };
   },
   watch: {},
@@ -368,6 +419,19 @@ export default {
         this.claim.mda_phone = "";
         this.claim.mda_email = "";
       }
+    },
+    showBox() {
+      this.showbox = true;
+    },
+    addFiles(files) {
+      this.claim.files = files;
+      this.showbox = false;
+    },
+    removeFile(index) {
+      this.claim.files.splice(index, 1);
+    },
+    closeBox() {
+      this.showbox = false;
     },
     delete(code) {
       console.log("here");

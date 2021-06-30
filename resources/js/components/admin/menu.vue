@@ -106,7 +106,7 @@ export default {
               path: { path: "/admin/addunderwriter" }
             }
           ],
-          icon: "mdi-account-key"
+          icon: "mdi-shield"
         },
         {
           title: "Brokers",
@@ -120,7 +120,7 @@ export default {
               path: { path: "/admin/addbroker" }
             }
           ],
-          icon: "mdi-account-key"
+          icon: "mdi-shield-edit"
         },
         {
           title: "Business",
@@ -134,7 +134,7 @@ export default {
               path: { path: "/admin/addbusiness" }
             }
           ],
-          icon: "mdi-account-key"
+          icon: "mdi-handshake"
         },
         {
           title: "Policy",
@@ -148,7 +148,7 @@ export default {
               path: { path: "/admin/addpolicy" }
             }
           ],
-          icon: "mdi-account-key"
+          icon: "mdi-file-document-edit"
         },
         {
           title: "Asset",
@@ -162,7 +162,7 @@ export default {
               path: { path: "/admin/addasset" }
             }
           ],
-          icon: "mdi-account-key"
+          icon: "mdi-graph-outline"
         },
         {
           title: "Asset Types",
@@ -176,7 +176,7 @@ export default {
               path: { path: "/admin/addassettype" }
             }
           ],
-          icon: "mdi-account-key"
+          icon: "mdi-home-floor-2"
         },
         {
           title: "Insurance Classes",
@@ -190,7 +190,7 @@ export default {
               path: { path: "/admin/addinsuranceclass" }
             }
           ],
-          icon: "mdi-account-key"
+          icon: "mdi-shield-half-full"
         },
         {
           title: "Admins",
@@ -214,7 +214,7 @@ export default {
               path: { path: "/admin/agencytypes" }
             }
           ],
-          icon: "mdi-shield-check"
+          icon: "mdi-office-building"
         }
       ]
     };

@@ -328,35 +328,35 @@
                       ></textarea>
                       <p class="text-danger text-center">{{errors[`bene${index}others`]}}</p>
                     </div>
-                    <div class="col-md-12">
-                      <div class="row">
-                        <div class="col-md-2" v-for="(x,ind) in item.files" :key="ind">
-                          <img
-                            v-if="x.file_type == 'image'"
-                            class="img-thumbnail user-file"
-                            :src="x.url"
-                          />
-                          <img
-                            v-else
-                            class="img-thumbnail user-file"
-                            :src="`${index_url}/public/images/imagefile.png`"
-                          />
-                          <i>{{x.filename}}</i>
-                          <button
-                            class="btn-danger btn-sm"
-                            style="position: absolute; right:10px;z-index:999999;"
-                            @click="removeFile(item,ind)"
-                          >
-                            <i class="feather icon-minus"></i>
-                          </button>
+                        <div class="col-md-12">
+                        <div class="row">
+                            <div class="col-md-2" v-for="(x,ind) in item.files" :key="ind">
+                            <img
+                                v-if="x.file_type == 'image'"
+                                class="img-thumbnail user-file"
+                                :src="x.url"
+                            />
+                            <img
+                                v-else
+                                class="img-thumbnail user-file"
+                                :src="`${index_url}/public/images/imagefile.png`"
+                            />
+                            <i>{{x.filename}}</i>
+                            <button
+                                class="btn-danger btn-sm"
+                                style="position: absolute; right:10px;z-index:999999;"
+                                @click="removeFile(item,ind)"
+                            >
+                                <i class="feather icon-minus"></i>
+                            </button>
+                            </div>
                         </div>
-                      </div>
-                    </div>
-                    <div class="col-md-12">
-                      <button class="btn-danger btn-sm" @click="showBox(index)">
-                        <i class="feather">add files</i>
-                      </button>
-                    </div>
+                        </div>
+                        <div class="col-md-12">
+                        <button class="btn-danger btn-sm" @click="showBox(index)">
+                            <i class="feather">add files</i>
+                        </button>
+                        </div>
                   </div>
                 </div>
 
