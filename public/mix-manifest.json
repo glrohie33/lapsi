@@ -1,4 +1,8 @@
 {
     "/js/app.js": "/js/app.js",
-    "/css/app.css": "/css/app.css"
+    "/css/app.css": "/css/app.css",
+    "/dynamically-imported-component.js": "/dynamically-imported-component.js",
+    "/home.js": "/home.js",
+    "/login.js": "/login.js",
+    "/portal.js": "/portal.js"
 }

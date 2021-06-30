@@ -2,9 +2,9 @@ import Vue from 'vue'
 import VueRouter from 'vue-router'
 
 
-import Home from './components/HomeComponent.vue'
-import Login from './components/pages/login.vue'
-import Portal from './components/portal/portal.vue'
+const Home = () => import(/* webpackChunkName: "home" */'./components/HomeComponent.vue');
+const Login = () => import(/* webpackChunkName: "login" */'./components/pages/login.vue');
+const Portal = () => import(/* webpackChunkName: "portal" */'./components/portal/portal.vue');
 import Dashboard from './components/portal/dashboard.vue'
 import Admin from './components/admin/admin.vue'
 import AdminDashboard from './components/admin/dashboard.vue'
@@ -72,7 +72,7 @@ if (current_url.includes("localhost"))
 var routes = [{
     path: "/",
     name: 'home',
-    component:Login
+    component: Login
 }, {
     path: "/login",
     name: 'login',
