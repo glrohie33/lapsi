@@ -82,7 +82,7 @@ var routes = [{
     name: 'adminLogin',
     component: AdminLogin
 }, {
-    path: "/portal",
+    path: "/portal", 
     name: 'Portal',
     component: Portal,
     children: [
