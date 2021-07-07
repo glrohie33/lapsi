@@ -8,7 +8,7 @@
           <div class="mr-auto float-left bookmark-wrapper d-flex align-items-center">
             <ul class="nav navbar-nav">
               <li class="nav-item mobile-menu d-xl-none mr-auto">
-                <a class="nav-link nav-menu-main menu-toggle hidden-xs" href="#">
+                <a class="nav-link nav-menu-main menu-toggle hidden-xs" href="#" @click="menuSet()">
                   <i class="ficon feather icon-menu"></i>
                 </a>
               </li>
@@ -284,6 +284,9 @@ export default {
       this.$store.commit("setUser", "");
       this.$store.commit("setRole", "");
       this.$router.push({ path: "/login" });
+    },
+    menuSet() {
+      this.$emit("menu", "");
     }
   }
 };

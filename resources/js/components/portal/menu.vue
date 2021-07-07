@@ -1,9 +1,12 @@
 <template>
-  <v-navigation-drawer fixed expand-on-hover>
+  <v-navigation-drawer fixed :expand-on-hover="variant" v-model="menuModel">
+    <v-btn icon @click="setMenu()" class="d-xl-none">
+      <v-icon>mdi-close</v-icon>
+    </v-btn>
     <div class="navbar-header">
       <ul class="nav navbar-nav flex-row">
         <li class="nav-item mr-auto">
-          <router-link class="navbar-brand" :to="{path:'/admin/'}">
+          <router-link class="navbar-brand" :to="{path:'/portal/'}">
             <div class="brand-logo">
               <img :src="`${index_url}/public/images/logo.png`" alt />
               <h2 class="brand-text mb-0">LAPSI</h2>
@@ -43,7 +46,7 @@
 </template>
 <script>
 export default {
-  props: ["user"],
+  props: ["user", "menuModel","variant"],
   data() {
     return {
       index_url: index_url,
@@ -69,6 +72,11 @@ export default {
         }
       ]
     };
+  },
+  methods: {
+    setMenu() {
+      this.$emit("menu", "");
+    }
   }
 };
 </script>

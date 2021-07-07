@@ -1,5 +1,6 @@
 <template>
-  <div class="app-content contianer">
+<div class="body">
+    <div class="app-content contianer">
     <div class="content-overlay"></div>
     <div class="header-navbar-shadow"></div>
     <div class="content-wrapper">
@@ -24,7 +25,7 @@
         <!-- Column selectors with Export Options and print table -->
         <section id="column-selectors">
           <div class="row">
-            <div class="col-12">
+            <div class="col-10">
               <div class="card">
                 <div class="card-content">
                   <div class="card-body">
@@ -245,6 +246,8 @@
       ></FileUpload>
     </v-dialog>
   </div>
+</div>
+
 </template>
 <script>
 import fileupload from "../fileuploadmodal.vue";
