@@ -32,6 +32,7 @@ class LoginController extends Controller
                 $status = true;
                 $user = $user->first();
                 $bene = json_decode($user->beneficiaries, true);
+                $pass = "";
                 if (count($bene) == 0) {
                     $user_status = "incomplete";
                 } else {
