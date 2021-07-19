@@ -25,7 +25,7 @@
         <!-- Column selectors with Export Options and print table -->
         <section id="column-selectors">
           <div class="row">
-            <div class="col-10">
+            <div class="col-10" style="margin:0px auto;">
               <div class="card">
                 <div class="card-content">
                   <div class="card-body">

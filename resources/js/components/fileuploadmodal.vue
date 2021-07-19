@@ -115,6 +115,7 @@ export default {
     }
   },
   created() {
+    console.log("here");
     if (Array.isArray(this.inFiles) && this.inFiles.length > 0) {
       this.allFiles.push(...this.inFiles);
     }
@@ -135,6 +136,7 @@ export default {
           files.forEach(file => {
             file.selected = true;
             var f = file;
+            this.userFiles.unshift(f);
             this.allFiles.unshift(f);
           });
         }
