@@ -78,6 +78,7 @@ class AssetController extends Controller
     {
         //
         $input = $request->all();
+        
         $validator = Validator::make($input, ['agency_id' => 'required|not_in:[]', 'asset_details' => 'required|file|mimes:xlsx,xls,csv,txt', 'asset_type_id' => 'required'], ['asset_type_id.required' => 'Please select asset type', 'asset_details.required' => 'Please select assets']);
         if ($validator->fails()) {
             $status = false;

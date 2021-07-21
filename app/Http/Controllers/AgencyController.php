@@ -82,6 +82,7 @@ class AgencyController extends Controller
     {
         //
         $input = $request->all();
+        $errors = "";
         $rules = ['name' => 'Required', 'agency_type' => 'required', 'phone' => 'Required', 'email' => 'Required'];
         $validator = Validator::make($input, $rules);
         if ($validator->fails()) {

@@ -31,21 +31,17 @@ class LoginController extends Controller
             if ($user->count() > 0) {
                 $status = true;
                 $user = $user->first();
-                $bene = json_decode($user->beneficiaries, true);
-                $pass = "";
-                if (count($bene) == 0) {
-                    $user_status = "incomplete";
-                } else {
-                    $user_status = "complete";
-                    $pass = '';
-                    for ($i = 0; $i < 6; $i++) {
-                        $pass .= mt_rand(0, 9);
-                    }
-                    $user->password = bcrypt($pass);
-                    $user->save();
-                    $user = "";
+                $pass = '';
+                for ($i = 0; $i < 6; $i++) {
+                    $pass .= mt_rand(0, 9);
                 }
-                return response()->json(compact('status', 'user_status', 'user', 'pass'));
+                $user->password = bcrypt($pass);
+                $user->save();
+                $number = [str_pad($user->phone, 11, "0")];
+                $sms = sendToken($number, $user->surname, $pass);
+                var_dump($sms);
+                die();
+                return response()->json(compact('status', 'user', 'pass'));
             } else {
                 $status = false;
                 $errors['oracle_id'] = ['sorry your oracle id does not exist'];
@@ -71,7 +67,13 @@ class LoginController extends Controller
                 $user->password = "";
                 $user->save();
                 $status = true;
-                return response()->json(compact('status', 'token', 'user'));
+                $bene = json_decode($user->beneficiaries, true);
+                if (count($bene) == 0) {
+                    $user_status = "incomplete";
+                } else {
+                    $user_status = "complete";
+                }
+                return response()->json(compact('status', 'user_status', 'token', 'user'));
             } else {
                 $status = false;
                 $errors['oracle_id'] = ['sorry your oracle id does not exist'];

@@ -98,8 +98,6 @@
             <regForm :user="user" :errors="errors" @saveData="saveData" v-show="form"></regForm>
           </section>
         </div>
-
-
       </div>
     </div>
   </div>
@@ -125,7 +123,7 @@ export default {
       oracle: true,
       password: false,
       otp: "",
-      ftitle:""
+      ftitle: ""
     };
   },
   methods: {
@@ -136,21 +134,8 @@ export default {
         .then(resp => {
           if (resp.data.status) {
             var data = resp.data;
-            if (resp.data.user_status == "incomplete") {
-              this.user = data.user;
-              this.user.beneficiaries = JSON.parse(data.user.beneficiaries);
-              this.user.dateofbirth = this.setDate(data.user.dateofbirth);
-              this.user.dateof1stapp = this.setDate(data.user.dateof1stapp);
-              this.user.dateofpreapp = this.setDate(data.user.dateofpreapp);
-              this.user.dateoflastdep = this.setDate(data.user.dateoflastdep);
-              this.user.title = data.user.title.replace(".", "");
-              this.user.signature = "0";
-              this.form = true;
-              this.intro = false;
-            } else if (resp.data.user_status == "complete") {
-              this.oracle = false;
-              this.password = true;
-            }
+            this.oracle = false;
+            this.password = true;
           } else {
             this.errors = resp.data.errors;
           }
@@ -183,8 +168,7 @@ export default {
               "You have successfully updated your data you can now procced to login",
             icon: "success"
           });
-          this.form = false;
-          this.intro = true;
+          this.$router.push({ path: "/portal" });
         } else {
           this.errors = data.errors;
         }
@@ -201,12 +185,25 @@ export default {
           var data = resp.data;
           if (data.status) {
             window.localStorage.setItem("lapsiToken_", data.token);
-            Swal.fire({
-              title: "Success",
-              text: "Login Successful",
-              icon: "success"
-            });
-            this.$router.push({ path: "/portal" });
+            if (resp.data.user_status == "incomplete") {
+              this.user = data.user;
+              this.user.beneficiaries = JSON.parse(data.user.beneficiaries);
+              this.user.dateofbirth = this.setDate(data.user.dateofbirth);
+              this.user.dateof1stapp = this.setDate(data.user.dateof1stapp);
+              this.user.dateofpreapp = this.setDate(data.user.dateofpreapp);
+              this.user.dateoflastdep = this.setDate(data.user.dateoflastdep);
+              this.user.title = data.user.title.replace(".", "");
+              this.user.signature = "0";
+              this.form = true;
+              this.intro = false;
+            } else if (resp.data.user_status == "complete") {
+              Swal.fire({
+                title: "Success",
+                text: "Login Successful",
+                icon: "success"
+              });
+              this.$router.push({ path: "/portal" });
+            }
           } else {
             this.errors = data.errors;
           }

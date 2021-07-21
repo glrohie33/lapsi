@@ -40,6 +40,7 @@ class BrokersAllocationController extends Controller
         $input = $request->all();
         $rules = ['agencies' => 'Required', 'broker' => 'required'];
         $message = ['broker.required' => 'please select a broker'];
+        $errors = "";
         $validator = Validator::make($input, $rules);
         if ($validator->fails()) {
             $status = false;

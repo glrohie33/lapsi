@@ -56,6 +56,7 @@ class AgencyTypeController extends Controller
     {
         //
         $input = $request->all();
+        $errors = "";
         $validator = Validator::make($input, ['name' => 'Required']);
         if ($validator->fails()) {
             $status = false;

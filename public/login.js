@@ -114,8 +114,6 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
-//
-//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
   components: {
@@ -149,22 +147,8 @@ __webpack_require__.r(__webpack_exports__);
       }).then(function (resp) {
         if (resp.data.status) {
           var data = resp.data;
-
-          if (resp.data.user_status == "incomplete") {
-            _this.user = data.user;
-            _this.user.beneficiaries = JSON.parse(data.user.beneficiaries);
-            _this.user.dateofbirth = _this.setDate(data.user.dateofbirth);
-            _this.user.dateof1stapp = _this.setDate(data.user.dateof1stapp);
-            _this.user.dateofpreapp = _this.setDate(data.user.dateofpreapp);
-            _this.user.dateoflastdep = _this.setDate(data.user.dateoflastdep);
-            _this.user.title = data.user.title.replace(".", "");
-            _this.user.signature = "0";
-            _this.form = true;
-            _this.intro = false;
-          } else if (resp.data.user_status == "complete") {
-            _this.oracle = false;
-            _this.password = true;
-          }
+          _this.oracle = false;
+          _this.password = true;
         } else {
           _this.errors = resp.data.errors;
         }
@@ -199,8 +183,10 @@ __webpack_require__.r(__webpack_exports__);
             text: "You have successfully updated your data you can now procced to login",
             icon: "success"
           });
-          _this2.form = false;
-          _this2.intro = true;
+
+          _this2.$router.push({
+            path: "/portal"
+          });
         } else {
           _this2.errors = data.errors;
         }
@@ -218,15 +204,29 @@ __webpack_require__.r(__webpack_exports__);
 
         if (data.status) {
           window.localStorage.setItem("lapsiToken_", data.token);
-          Swal.fire({
-            title: "Success",
-            text: "Login Successful",
-            icon: "success"
-          });
 
-          _this3.$router.push({
-            path: "/portal"
-          });
+          if (resp.data.user_status == "incomplete") {
+            _this3.user = data.user;
+            _this3.user.beneficiaries = JSON.parse(data.user.beneficiaries);
+            _this3.user.dateofbirth = _this3.setDate(data.user.dateofbirth);
+            _this3.user.dateof1stapp = _this3.setDate(data.user.dateof1stapp);
+            _this3.user.dateofpreapp = _this3.setDate(data.user.dateofpreapp);
+            _this3.user.dateoflastdep = _this3.setDate(data.user.dateoflastdep);
+            _this3.user.title = data.user.title.replace(".", "");
+            _this3.user.signature = "0";
+            _this3.form = true;
+            _this3.intro = false;
+          } else if (resp.data.user_status == "complete") {
+            Swal.fire({
+              title: "Success",
+              text: "Login Successful",
+              icon: "success"
+            });
+
+            _this3.$router.push({
+              path: "/portal"
+            });
+          }
         } else {
           _this3.errors = data.errors;
         }

@@ -59,6 +59,7 @@ class BusinessController extends Controller
 
         //
         $input = $request->all();
+        $errors = "";
         $rules = ['agency' => 'Required', 'insured_name' => 'required', 'insured_phone' => 'Required', 'insured_email' => 'Required', 'business_type' => 'Required', 'business_class' => 'Required', 'business_description' => 'Required', 'business_value' => 'Required', 'business_location' => 'Required', 'contact_name' => 'Required', 'contact_phone' => 'Required'];
         $validator = Validator::make($input, $rules);
         if ($validator->fails()) {
