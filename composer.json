@@ -17,7 +17,8 @@
         "laravel/tinker": "^2.0",
         "laravel/ui": "2.0",
         "lcobucci/jwt": "^3.3.3",
-        "maatwebsite/excel": "^3.1"
+        "maatwebsite/excel": "^3.1",
+        "twilio/sdk": "^6.27"
     },
     "require-dev": {
         "facade/ignition": "^2.0",

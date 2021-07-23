@@ -8,6 +8,7 @@
           <div class="row breadcrumbs-top">
             <div class="col-12">
               <h2 class="content-header-title float-left mb-0">Admins</h2>
+              
             </div>
           </div>
         </div>
@@ -159,7 +160,6 @@
                         @click="addStaff($event)"
                         class="btn btn-primary mr-1 mb-1"
                       >Submit</button>
-                      <button type="reset" class="btn btn-outline-warning mr-1 mb-1">Reset</button>
                     </div>
                   </div>
                 </div>

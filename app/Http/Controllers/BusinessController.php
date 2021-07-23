@@ -18,6 +18,7 @@ class BusinessController extends Controller
     public function index(Request $request)
     {
 
+        
         //
         $offset = ($request->page * $request->limit) - $request->limit;
         $parent = DB::table('businesses');

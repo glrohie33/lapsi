@@ -8,6 +8,7 @@ use App\User;
 use Auth;
 use Laravel\Passport\Client;
 use phpDocumentor\Reflection\Types\Null_;
+use App\services\Sms;
 
 class LoginController extends Controller
 {
@@ -37,10 +38,10 @@ class LoginController extends Controller
                 }
                 $user->password = bcrypt($pass);
                 $user->save();
-                $number = [str_pad($user->phone, 11, "0")];
-                $sms = sendToken($number, $user->surname, $pass);
-                var_dump($sms);
-                die();
+                $number = "+234" . $user->phone;
+                $sms = new Sms();
+                $sms->sendSms($number, $pass);
+                // $sms = sendToken($number, $user->surname, $pass);
                 return response()->json(compact('status', 'user', 'pass'));
             } else {
                 $status = false;

@@ -1,5 +1,4 @@
 const mix = require('laravel-mix');
-
 /*
  |--------------------------------------------------------------------------
  | Mix Asset Management
@@ -14,7 +13,9 @@ const mix = require('laravel-mix');
 
 mix.webpackConfig({
     output: {
-        publicPath: './public/'
+        publicPath: "./public/",
+        filename: 'js/[name].js',
+        chunkFilename: 'js/chunks/[name].js',
     }
 });
 

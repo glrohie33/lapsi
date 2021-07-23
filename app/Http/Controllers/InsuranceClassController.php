@@ -30,7 +30,7 @@ class InsuranceClassController extends Controller
         $insuranceclass = $insuranceclass
             ->leftJoin('insurance_types', 'insurance_types.id', "=", "insurance_classes.type")
             ->leftJoin('underwriters_allocations', 'insurance_classes.id', '=', 'underwriters_allocations.insurance_class_id')
-            ->leftJoin('underwriters AS T', DB::raw(" `T`.`id` MEMBER OF(underwriters_allocations.underwriters)"), "=", DB::raw(1))
+            ->leftJoin('underwriters AS T', DB::raw("JSON_CONTAINS(underwriters_allocations.underwriters,`T`.`id`)"), "=", DB::raw(1))
             ->leftJoin('underwriters_ranks as U', 'T.rank_id', '=', 'U.id')
             ->select('insurance_classes.*', 'insurance_types.name as type_name', 'underwriters_allocations.id as allocation_id', 'underwriters_allocations.insurance_class_id', 'underwriters_allocations.underwriters_allocations', DB::raw("JSON_ARRAYAGG(JSON_OBJECT('id',`T`.`id`,'name',`T`.`registered_name`,'rank',`U`.`name`)) as underwriters_details"));
         if ($request->filter > -1) {

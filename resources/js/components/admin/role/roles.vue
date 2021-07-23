@@ -19,7 +19,10 @@
             <div class="col-12">
               <div class="card">
                 <div class="card-header">
-                  <h4 class="card-title">All Staffs Table</h4>
+                  <h4 class="card-title">All Roles Table</h4>
+                  <router-link :to="{path:'/admin/addrole'}">
+                    <v-btn>Add New</v-btn>
+                  </router-link>
                 </div>
                 <div class="card-content">
                   <div class="card-body card-dashboard">

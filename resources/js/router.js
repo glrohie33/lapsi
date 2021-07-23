@@ -5,6 +5,7 @@ import VueRouter from 'vue-router'
 const Home = () => import(/* webpackChunkName: "home" */'./components/HomeComponent.vue');
 const Login = () => import(/* webpackChunkName: "login" */'./components/pages/login.vue');
 const Portal = () => import(/* webpackChunkName: "portal" */'./components/portal/portal.vue');
+const EditRole = () => import(/* webpackChunkName: "editrole" */'./components/admin/role/edit.vue');
 import Dashboard from './components/portal/dashboard.vue'
 import Admin from './components/admin/admin.vue'
 import AdminDashboard from './components/admin/dashboard.vue'
@@ -56,6 +57,7 @@ import Claim from './components/admin/claim/list.vue'
 import AddClaim from './components/admin/claim/add.vue'
 import EditClaim from './components/admin/claim/edit.vue'
 
+
 import axios from 'axios'
 import store from './store.js'
 Vue.use(axios);
@@ -82,7 +84,7 @@ var routes = [{
     name: 'adminLogin',
     component: AdminLogin
 }, {
-    path: "/portal", 
+    path: "/portal",
     name: 'Portal',
     component: Portal,
     children: [
@@ -137,6 +139,11 @@ var routes = [{
             path: "addrole",
             name: 'addrole',
             component: AddRole
+        },
+        {
+            path: "role/:slug",
+            name: 'Edit Role',
+            component: EditRole
         },
         {
             path: "agencies",

@@ -20,6 +20,9 @@
               <div class="card">
                 <div class="card-header">
                   <h4 class="card-title">Add Staff</h4>
+                  <router-link :to="{path:'/admin/Users'}">
+                    <v-btn>Back To List</v-btn>
+                  </router-link>
                 </div>
                 <div class="card-content">
                   <div class="card-body">
@@ -74,7 +77,6 @@
                         @click="addStaff($event)"
                         class="btn btn-primary mr-1 mb-1"
                       >Submit</button>
-                      <button type="reset" class="btn btn-outline-warning mr-1 mb-1">Reset</button>
                     </div>
                   </div>
                 </div>

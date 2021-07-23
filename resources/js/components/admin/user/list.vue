@@ -192,6 +192,9 @@
               <div class="card">
                 <div class="card-header">
                   <h4 class="card-title">All Staffs Table</h4>
+                  <router-link :to="{path:'/admin/adduser'}">
+                    <v-btn>Upload Nominal</v-btn>
+                  </router-link>
                 </div>
                 <div class="card-content">
                   <div class="card-body card-dashboard">

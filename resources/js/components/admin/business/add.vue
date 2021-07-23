@@ -7,7 +7,7 @@
         <div class="content-header-left col-md-9 col-12 mb-2">
           <div class="row breadcrumbs-top">
             <div class="col-12">
-              <h2 class="content-header-title float-left mb-0">Policy</h2>
+              <h2 class="content-header-title float-left mb-0">{{$route.name.toUpperCase()}}</h2>
             </div>
           </div>
         </div>
@@ -20,6 +20,9 @@
               <div class="card">
                 <div class="card-header">
                   <h4 class="card-title">Add Business</h4>
+                  <router-link :to="{path:'/admin/business'}">
+                      <v-btn>Back To List</v-btn>
+                  </router-link>
                 </div>
                 <div class="card-content">
                   <div class="card-body">
