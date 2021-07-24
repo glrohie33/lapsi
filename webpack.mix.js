@@ -10,12 +10,10 @@ const mix = require('laravel-mix');
  |
  */
 
-
 mix.webpackConfig({
     output: {
-        publicPath: "./public/",
-        filename: 'js/[name].js',
-        chunkFilename: 'js/chunks/[name].js',
+        publicPath:"/public/",
+        chunkFilename: 'js/[name].js',
     }
 });
 
