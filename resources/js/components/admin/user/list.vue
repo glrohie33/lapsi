@@ -257,41 +257,21 @@
                                       <div class="row">
                                         <div class="col-12">
                                           <div class="form-group">
-                                            <label for="first-name-vertical">User Name</label>
+                                            <label for="first-name-vertical">Retirement Date</label>
                                             <input
-                                              type="text"
+                                              type="date"
                                               id="first-name-vertical"
                                               class="form-control"
-                                              :value="`${user.surname} ${user.firstname}`"
                                               placeholder="user name"
                                               name="name"
                                               required
                                             />
                                             <i
                                               class="text-danger"
-                                              v-for="(error,index) in errors['name']"
+                                              v-for="(error,index) in errors['date']"
                                               :key="index"
                                             >{{error}}</i>
                                           </div>
-                                        </div>
-                                        <div class="col-md-12 form-group">
-                                          <label>Role</label>
-                                          <select
-                                            v-model="user.role_id"
-                                            class="form-control select2-icons"
-                                          >
-                                            <option value data-icon="fa fa-male">Select Role</option>
-                                            <option
-                                              v-for="(x,ind) in roles"
-                                              :key="ind"
-                                              :value="x.id"
-                                            >{{x.name}}</option>
-                                          </select>
-                                          <p
-                                            class="text-danger text-center"
-                                            v-for="(err,index) in errors.parent_id"
-                                            :key="index"
-                                          >{{err}}</p>
                                         </div>
                                       </div>
                                     </div>

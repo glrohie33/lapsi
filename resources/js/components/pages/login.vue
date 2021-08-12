@@ -36,11 +36,13 @@
                                 placeholder="Oracle Id"
                                 required
                               />
-                              <i
-                                class="text-danger"
-                                v-for="(x,index) in errors.oracle_id"
-                                :key="index"
-                              >{{x}}</i>
+                              <div v-if="'oracle_id' in errors">
+                                <i
+                                  class="text-danger"
+                                  v-for="(x,index) in errors.oracle_id"
+                                  :key="index"
+                                >{{x}}</i>
+                              </div>
 
                               <label for="user-name">Oracle Id</label>
                             </fieldset>

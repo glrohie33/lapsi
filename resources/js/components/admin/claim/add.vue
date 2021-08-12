@@ -101,7 +101,6 @@
                                 placeholder="policy number"
                                 name="name"
                                 required
-                                readonly
                               />
                               <i
                                 class="text-danger"
@@ -150,6 +149,7 @@
                               :key="index"
                             >{{err}}</p>
                           </div>
+
                           <div class="col-md-6 form-group">
                             <label>Asset Type</label>
                             <select
@@ -184,7 +184,7 @@
                           </div>
                           <div class="col-md-6 form-group">
                             <label>Claim value</label>
-                            <input type v-model="claim.claim_valie" class="form-control" />
+                            <input type v-model="claim.claim_value" class="form-control" />
                           </div>
                           <div class="col-md-6 form-group">
                             <label>Claim Location</label>
