@@ -36,7 +36,7 @@
                                 class="form-control"
                                 id="user-name"
                                 v-model="username"
-                                placeholder="Oracle Id"
+                                placeholder="Username"
                                 required
                               />
                               <i
@@ -55,7 +55,7 @@
                                 class="form-control"
                                 id="user-name"
                                 v-model="password"
-                                placeholder="Oracle Id"
+                                placeholder="Password"
                                 required
                               />
                               <i
