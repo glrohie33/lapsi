@@ -213,7 +213,7 @@
                                           v-for="(rank,index) in parentRank"
                                           :key="index"
                                         >
-                                          <label>Rank</label>
+                                          <label>Select Lead Underwriter</label>
                                           <select
                                             v-model="underwriter.rel[index]"
                                             @change="setNextRank($event)"

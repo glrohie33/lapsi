@@ -7,7 +7,7 @@
         <div class="content-header-left col-md-9 col-12 mb-2">
           <div class="row breadcrumbs-top">
             <div class="col-12">
-              <h2 class="content-header-title float-left mb-0">DataTables</h2>
+              <h2 class="content-header-title float-left mb-0">{{pageName}}</h2>
               <div class="breadcrumb-wrapper col-12">
                 <ol class="breadcrumb">
                   <li class="breadcrumb-item">
@@ -40,66 +40,9 @@
                         :loading="loading"
                       >
                         <template v-slot:top>
-                          <v-dialog v-model="dialog" max-width="400px">
-                            <template v-slot:activator="{on,attrs}">
-                              <v-btn
-                                color="primary"
-                                dark
-                                class="mb-2"
-                                v-bind="attrs"
-                                v-on="on"
-                              >New Item</v-btn>
-                            </template>
-                            <div class="card">
-                              <div class="card-header">
-                                <h4 class="card-title">Add Policy</h4>
-                              </div>
-                              <div class="card-content">
-                                <div class="card-body">
-                                  <form
-                                    class="form form-vertical"
-                                    style="width:90%; margin:0px auto;"
-                                  >
-                                    <div class="form-body">
-                                      <div class="row">
-                                        <div class="col-12">
-                                          <div class="form-group">
-                                            <label for="first-name-vertical">Policy Type Name</label>
-                                            <input
-                                              type="text"
-                                              id="first-name-vertical"
-                                              class="form-control"
-                                              v-model="type.name"
-                                              placeholder="policy type name"
-                                              name="name"
-                                              required
-                                            />
-                                            <i
-                                              class="text-danger"
-                                              v-for="(error,index) in errors['name']"
-                                              :key="index"
-                                            >{{error}}</i>
-                                          </div>
-                                        </div>
-                                      </div>
-                                    </div>
-                                  </form>
-                                  <div class="col-12">
-                                    <button
-                                      type="submit"
-                                      @click="addType($event)"
-                                      class="btn btn-primary mr-1 mb-1"
-                                    >Submit</button>
-                                    <button
-                                      type="reset"
-                                      @click="[dialog = false]"
-                                      class="btn btn-outline-warning mr-1 mb-1"
-                                    >Cancel</button>
-                                  </div>
-                                </div>
-                              </div>
-                            </div>
-                          </v-dialog>
+                          <router-link :to="{path:`/admin/addpolicy`}">
+                            <v-btn color="primary" dark class="mb-2" v-bind="attrs">New Policy</v-btn>
+                          </router-link>
                         </template>
                         <template
                           v-slot:item.underwriters="{item}"
@@ -180,6 +123,13 @@ export default {
   },
   created() {
     this.getData();
+  },
+  computed: {
+    pageName: {
+      get() {
+        return this.$route.name.toUpperCase();
+      }
+    }
   },
   methods: {
     getData() {

@@ -7,7 +7,7 @@
         <div class="content-header-left col-md-9 col-12 mb-2">
           <div class="row breadcrumbs-top">
             <div class="col-12">
-              <h2 class="content-header-title float-left mb-0">Insuranceclass</h2>
+              <h2 class="content-header-title float-left mb-0">Insurance Class</h2>
             </div>
           </div>
         </div>
@@ -19,7 +19,7 @@
             <div class="col-12">
               <div class="card">
                 <div class="card-header">
-                  <h4 class="card-title">All Insuranceclass Table</h4>
+                  <h4 class="card-title">All Insurance Class Table</h4>
                 </div>
                 <div class="card-content">
                   <div class="card-body card-dashboard">
@@ -49,7 +49,7 @@
                               <select v-model="filter" class="form-control select2-icons">
                                 <option value="-1" data-icon="fa fa-male">All Insuranceclass</option>
                                 <option value="1">Allocated Insuranceclass</option>
-                                <option value="0">Allocated Insuranceclass</option>
+                                <option value="0">Unallocated Insuranceclass</option>
                               </select>
                             </div>
                           </div>
@@ -328,7 +328,7 @@ export default {
           this.parents = resp.data.insuranceclass;
         });
 
-      axios.get(`${index_url}/api/insurancetypes`).then(resp => {
+      axios.get(`${index_url}/api/insurancetype`).then(resp => {
         this.types = resp.data.type;
       });
     },

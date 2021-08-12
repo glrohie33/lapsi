@@ -64,8 +64,8 @@ class UserController extends Controller
         return response()->json(compact('users', 'total'));
     }
 
-    public function userFiles(){
-        
+    public function userFiles()
+    {
     }
 
     public function userByAgency(Request $request)
@@ -88,8 +88,7 @@ class UserController extends Controller
         } else {
             $status = false;
         }
-	return response()->json(compact('status', 'user', 'role'));
-
+        return response()->json(compact('status', 'user', 'role'));
     }
 
     public function user_actions(Request $request)

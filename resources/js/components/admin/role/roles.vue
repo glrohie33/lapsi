@@ -41,7 +41,7 @@
 
                           <v-icon small @click="deleteItem(item.slug)">mdi-delete</v-icon>
                         </template>
-                      </v-data-table>
+                      </v-data-table> 
                     </div>
                   </div>
                 </div>

@@ -63,7 +63,11 @@
                       </table>
                     </div>
                     <div class="col-12">
-                      <a class="btn btn-primary mr-1 btn-sm" v-if="permissions('user','update')">
+                      <a
+                        class="btn btn-primary mr-1 btn-sm"
+                        v-if="permissions('user','update')"
+                        @click="[rankDialog=true]"
+                      >
                         <i class="feather icon-edit-1"></i> Edit
                       </a>
                       <button
@@ -114,6 +118,76 @@
                 <div class="card-content">
                   <div class="card-body card-dashboard">
                     <div class="table-responsive">
+                      <v-dialog v-model="rankDialog" max-width="400px">
+                        <div class="card">
+                          <div class="card-header">
+                            <h4 class="card-title">Add Rank</h4>
+                          </div>
+                          <div class="card-content">
+                            <div class="card-body">
+                              <form class="form form-vertical" style="width:90%; margin:0px auto;">
+                                <div class="form-body">
+                                  <div class="row">
+                                    <div class="col-md-12 form-group">
+                                      <label>Rank</label>
+                                      <select
+                                        v-model="broker.rank_id"
+                                        @change="setParents()"
+                                        class="form-control select2-icons"
+                                      >
+                                        <option value data-icon="fa fa-male">Select Rank</option>
+                                        <option
+                                          v-for="(x,ind) in ranks"
+                                          :key="ind"
+                                          :value="x.id"
+                                        >{{x.name}}</option>
+                                      </select>
+
+                                      <p
+                                        class="text-danger text-center"
+                                        v-for="(err,index) in errors.rank"
+                                        :key="index"
+                                      >{{err}}</p>
+                                    </div>
+                                    <div
+                                      class="col-md-12 form-group"
+                                      v-for="(rank,index) in parentRank"
+                                      :key="index"
+                                    >
+                                      <label>{{rankLevel[index]}}</label>
+                                      <select
+                                        v-model="broker.rel[index]"
+                                        @change="setNextRank($event)"
+                                        class="form-control select2-icons"
+                                      >
+                                        <option value data-icon="fa fa-male">Select Rank</option>
+                                        <option
+                                          v-for="(x,ind) in rank"
+                                          :key="ind"
+                                          :value="x.id"
+                                        >{{x.registered_name}}</option>
+                                      </select>
+                                    </div>
+                                  </div>
+                                </div>
+                              </form>
+                              <p class="text-danger text-center">{{brokerError}}</p>
+                              <div class="col-12">
+                                <button
+                                  type="submit"
+                                  @click="addRank($event)"
+                                  class="btn btn-primary mr-1 mb-1"
+                                >Submit</button>
+                                <button
+                                  type="reset"
+                                  @click="[rankDialog = false]"
+                                  class="btn btn-outline-warning mr-1 mb-1"
+                                >Cancel</button>
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+                      </v-dialog>
                       <v-data-table
                         v-model="selected"
                         :headers="headers"
@@ -174,79 +248,7 @@
                             />
                           </div>
                           <!-- set role -->
-                          <v-dialog v-model="rankDialog" max-width="400px">
-                            <div class="card">
-                              <div class="card-header">
-                                <h4 class="card-title">Add Rank</h4>
-                              </div>
-                              <div class="card-content">
-                                <div class="card-body">
-                                  <form
-                                    class="form form-vertical"
-                                    style="width:90%; margin:0px auto;"
-                                  >
-                                    <div class="form-body">
-                                      <div class="row">
-                                        <div class="col-md-12 form-group">
-                                          <label>Rank</label>
-                                          <select
-                                            v-model="broker.rank_id"
-                                            @change="setParents()"
-                                            class="form-control select2-icons"
-                                          >
-                                            <option value data-icon="fa fa-male">Select Rank</option>
-                                            <option
-                                              v-for="(x,ind) in ranks"
-                                              :key="ind"
-                                              :value="x.id"
-                                            >{{x.name}}</option>
-                                          </select>
 
-                                          <p
-                                            class="text-danger text-center"
-                                            v-for="(err,index) in errors.rank"
-                                            :key="index"
-                                          >{{err}}</p>
-                                        </div>
-                                        <div
-                                          class="col-md-12 form-group"
-                                          v-for="(rank,index) in parentRank"
-                                          :key="index"
-                                        >
-                                          <label>Rank</label>
-                                          <select
-                                            v-model="broker.rel[index]"
-                                            @change="setNextRank($event)"
-                                            class="form-control select2-icons"
-                                          >
-                                            <option value data-icon="fa fa-male">Select Rank</option>
-                                            <option
-                                              v-for="(x,ind) in rank"
-                                              :key="ind"
-                                              :value="x.id"
-                                            >{{x.registered_name}}</option>
-                                          </select>
-                                        </div>
-                                      </div>
-                                    </div>
-                                  </form>
-                                  <p class="text-danger text-center">{{brokerError}}</p>
-                                  <div class="col-12">
-                                    <button
-                                      type="submit"
-                                      @click="addRank($event)"
-                                      class="btn btn-primary mr-1 mb-1"
-                                    >Submit</button>
-                                    <button
-                                      type="reset"
-                                      @click="[roleDialog = false]"
-                                      class="btn btn-outline-warning mr-1 mb-1"
-                                    >Cancel</button>
-                                  </div>
-                                </div>
-                              </div>
-                            </div>
-                          </v-dialog>
                           <v-dialog v-model="allocationDialog" max-width="400px">
                             <div class="card">
                               <div class="card-header">
@@ -414,7 +416,9 @@ export default {
         agency_id: "",
         broker_id: ""
       },
-      agencies:[]
+      agencies: [],
+      rankLevel: ["Super Broker", "Lead Broker"],
+      allocationDialog: false
     };
   },
   watch: {

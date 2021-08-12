@@ -26,7 +26,7 @@ class AssetTypeController extends Controller
             $order = ($request->desc) ? 'desc' : 'asc';
             $type = $type->orderBy($request->sort, $order);
         }
-        $type = $type->leftJoin('insurance_classes AS class', DB::raw("`class`.`id` MEMBER OF(asset_types.insurance_classes)"), "=", DB::raw(1))
+        $type = $type->leftJoin('insurance_classes AS class', DB::raw("JSON_CONTAINS(asset_types.insurance_classes,`class`.`id`)"), "=", DB::raw(1))
             ->select('asset_types.*', DB::raw("GROUP_CONCAT(`class`.`name`) AS classes"))
             ->groupBy('asset_types.id')
             ->get();
@@ -116,7 +116,7 @@ class AssetTypeController extends Controller
     {
         if (!empty($request->insuranceclass)) {
             $ins = $request->insuranceclass;
-            $assettype = AssetType::where(DB::raw("$ins  MEMBER OF(insurance_classes)"), '=', DB::raw(1))->get();
+            $assettype = AssetType::where(DB::raw("JSON_CONTAINS(insurance_classes,$ins)"), '=', DB::raw(1))->get();
         }
 
         return response()->json(compact('assettype'));

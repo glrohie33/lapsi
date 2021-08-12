@@ -42,7 +42,7 @@ class LoginController extends Controller
                 $sms = new Sms();
                 $sms->sendSms($number, $pass);
                 // $sms = sendToken($number, $user->surname, $pass);
-                return response()->json(compact('status', 'user', 'pass'));
+                return response()->json(compact('status', 'user'));
             } else {
                 $status = false;
                 $errors['oracle_id'] = ['sorry your oracle id does not exist'];

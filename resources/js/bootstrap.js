@@ -14,7 +14,7 @@ try
     var dt = require('datatables.net')();
     // window.Swal = require('sweetalert2');
 
-    require('bootstrap');
+    // require('bootstrap');
 } catch (e) { }
 
 /**

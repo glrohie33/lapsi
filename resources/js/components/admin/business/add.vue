@@ -21,7 +21,7 @@
                 <div class="card-header">
                   <h4 class="card-title">Add Business</h4>
                   <router-link :to="{path:'/admin/business'}">
-                      <v-btn>Back To List</v-btn>
+                    <v-btn>Back To List</v-btn>
                   </router-link>
                 </div>
                 <div class="card-content">
@@ -41,7 +41,7 @@
                             </select>
                             <p
                               class="text-danger text-center"
-                              v-for="(err,index) in errors.agency_id"
+                              v-for="(err,index) in errors.agency"
                               :key="index"
                             >{{err}}</p>
                           </div>
@@ -81,7 +81,7 @@
                             </select>
                             <p
                               class="text-danger text-center"
-                              v-for="(err,index) in errors.policy_type"
+                              v-for="(err,index) in errors.business_type"
                               :key="index"
                             >{{err}}</p>
                           </div>
@@ -101,7 +101,7 @@
                             </select>
                             <p
                               class="text-danger text-center"
-                              v-for="(err,index) in errors.policy_type"
+                              v-for="(err,index) in errors.business_type"
                               :key="index"
                             >{{err}}</p>
                           </div>
@@ -128,34 +128,74 @@
                           <div class="col-md-6 form-group">
                             <label>Insured Name</label>
                             <input type v-model="business.insured_name" class="form-control" />
+                            <p
+                              class="text-danger text-center"
+                              v-for="(err,index) in errors.insured_name"
+                              :key="index"
+                            >{{err}}</p>
                           </div>
                           <div class="col-md-6 form-group">
                             <label>Insured Phone</label>
                             <input type v-model="business.insured_phone" class="form-control" />
+                            <p
+                              class="text-danger text-center"
+                              v-for="(err,index) in errors.insured_phone"
+                              :key="index"
+                            >{{err}}</p>
                           </div>
                           <div class="col-md-6 form-group">
                             <label>Insured Email</label>
                             <input type v-model="business.insured_email" class="form-control" />
+                            <p
+                              class="text-danger text-center"
+                              v-for="(err,index) in errors.insured_email"
+                              :key="index"
+                            >{{err}}</p>
                           </div>
                           <div class="col-md-6 form-group">
                             <label>Business value</label>
                             <input type v-model="business.business_value" class="form-control" />
+                            <p
+                              class="text-danger text-center"
+                              v-for="(err,index) in errors.business_value"
+                              :key="index"
+                            >{{err}}</p>
                           </div>
                           <div class="col-md-6 form-group">
                             <label>Business Location</label>
                             <input type v-model="business.business_location" class="form-control" />
+                            <p
+                              class="text-danger text-center"
+                              v-for="(err,index) in errors.business_location"
+                              :key="index"
+                            >{{err}}</p>
                           </div>
                           <div class="col-md-6 form-group">
                             <label>Contact Name</label>
                             <input type v-model="business.contact_name" class="form-control" />
+                            <p
+                              class="text-danger text-center"
+                              v-for="(err,index) in errors.contact_name"
+                              :key="index"
+                            >{{err}}</p>
                           </div>
                           <div class="col-md-6 form-group">
                             <label>Contact Phone</label>
                             <input type v-model="business.contact_phone" class="form-control" />
+                            <p
+                              class="text-danger text-center"
+                              v-for="(err,index) in errors.contact_phone"
+                              :key="index"
+                            >{{err}}</p>
                           </div>
                           <div class="col-md-6 form-group">
                             <label>Contact Email</label>
                             <input type v-model="business.contact_email" class="form-control" />
+                            <p
+                              class="text-danger text-center"
+                              v-for="(err,index) in errors.contact_email"
+                              :key="index"
+                            >{{err}}</p>
                           </div>
                           <div class="col-md-12 form-group">
                             <label>Business Description</label>
@@ -164,6 +204,11 @@
                               v-model="business.business_description"
                               class="form-control"
                             ></textarea>
+                            <p
+                              class="text-danger text-center"
+                              v-for="(err,index) in errors.business_description"
+                              :key="index"
+                            >{{err}}</p>
                             <p
                               v-if="business.assets.length > 0"
                             >{{business.assets.length}} Uninsured Assets Found and will be insured</p>
@@ -178,7 +223,6 @@
                         @click="addBusiness($event)"
                         class="btn btn-primary mr-1 mb-1"
                       >Submit</button>
-                      <button type="reset" class="btn btn-outline-warning mr-1 mb-1">Reset</button>
                     </div>
                   </div>
                 </div>

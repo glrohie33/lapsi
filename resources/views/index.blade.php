@@ -9,10 +9,10 @@
         <link href="https://fonts.googleapis.com/css?family=Montserrat:300,400,500,600" rel="stylesheet">
 
         <link rel="stylesheet" type="text/css" href="{{ asset('public/app-assets/vendors/css/vendors.min.css') }}">
-        {{-- <link rel="stylesheet" type="text/css" href="{{ asset('public/app-assets/vendors/css/charts/apexcharts.css') }}"> --}}
+        <link rel="stylesheet" type="text/css" href="{{ asset('public/app-assets/vendors/css/charts/apexcharts.css') }}">
         <link rel="stylesheet" type="text/css" href="{{ asset('public/app-assets/vendors/css/extensions/tether-theme-arrows.css') }}">
         <link rel="stylesheet" type="text/css" href="{{ asset('public/app-assets/vendors/css/extensions/tether.min.css') }}">
-        {{-- <link rel="stylesheet" type="text/css" href="{{ asset('public/app-assets/vendors/css/extensions/shepherd-theme-default.css') }}"> --}}
+        <link rel="stylesheet" type="text/css" href="{{ asset('public/app-assets/vendors/css/extensions/shepherd-theme-default.css') }}">
         <!-- END: Vendor CSS-->
 
         <!-- BEGIN: Theme CSS-->
@@ -50,6 +50,7 @@
             <app></app>
         </div>
     </body>
+    <script src="{{ asset('public/js/app.js') }}" defer></script>
 
     <script src="{{ asset('public/app-assets/vendors/js/vendors.min.js') }}"></script>
     <!-- BEGIN Vendor JS-->
@@ -59,9 +60,8 @@
     <!-- END: Page Vendor JS-->
 
     <!-- BEGIN: Theme JS-->
-    <script src="{{asset('public/app-assets/js/core/app.js')}}"></script>
+    {{-- <script src="{{asset('public/app-assets/js/core/app.js')}}"></script> --}}
     {{-- <script src="{{asset('public/app-assets/js/scripts/components.js')}}"></script> --}}
-    <script src="{{ asset('public/js/app.js') }}" defer></script>
 
     <!-- END: Theme JS-->
 

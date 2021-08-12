@@ -47,7 +47,6 @@ window.formHeader = function ()
         }
     }
 }
-require('./bootstrap');
 const app = new Vue({
     Vue,
     vuetify,

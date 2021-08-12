@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Permission;
 use App\Role;
+use Facade\FlareClient\Http\Response;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Validator;
@@ -98,6 +99,9 @@ class RoleController extends Controller
     public function edit($id)
     {
         //
+        $status = true;
+        $role =  Role::where('slug', $id)->take(1)->first();
+        return Response()->json(compact('status', 'role'));
     }
 
     /**
@@ -110,6 +114,22 @@ class RoleController extends Controller
     public function update(Request $request, $id)
     {
         //
+        $input = $request->all();
+        $status = false;
+        $errors = [];
+        $validator = Validator::make($input, ['name' => 'required', 'permissions' => 'required']);
+        if (!$validator->fails()) {
+            if ($role = Role::find($id)) {
+                $status = true;
+                $role->update($input);
+            } else {
+                $errors = ["general" => "this role no longer exists"];
+            }
+        } else {
+            $status = false;
+            $errors = $validator->errors();
+        }
+        return response()->json(compact('status', 'errors'));
     }
 
     /**

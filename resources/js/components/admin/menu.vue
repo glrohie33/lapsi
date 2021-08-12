@@ -1,5 +1,5 @@
 <template>
-  <v-navigation-drawer fixed expand-on-hover>
+  <v-navigation-drawer expand-on-hover fixed>
     <div class="navbar-header">
       <ul class="nav navbar-nav flex-row">
         <li class="nav-item mr-auto">
@@ -95,6 +95,20 @@ export default {
           icon: "mdi-account-key"
         },
         {
+          title: "Admins",
+          items: [
+            {
+              title: "List",
+              path: { path: "/admin/staffs" }
+            },
+            {
+              title: "Add New",
+              path: { path: "/admin/addstaff" }
+            }
+          ],
+          icon: "mdi-account-box"
+        },
+        {
           title: "Underwriters",
           items: [
             {
@@ -113,7 +127,7 @@ export default {
           items: [
             {
               title: "List",
-              path: { path: "/admin/broker" }
+              path: { path: "/admin/brokers" }
             },
             {
               title: "Add New",
@@ -193,20 +207,6 @@ export default {
           icon: "mdi-shield-half-full"
         },
         {
-          title: "Admins",
-          items: [
-            {
-              title: "List",
-              path: { path: "/admin/staffs" }
-            },
-            {
-              title: "Add New",
-              path: { path: "/admin/addstaff" }
-            }
-          ],
-          icon: "mdi-account-box"
-        },
-        {
           title: "Agency Types",
           items: [
             {
@@ -262,9 +262,9 @@ export default {
   overflow: hidden;
 }
 
-.v-navigation-drawer--fixed {
+/* .v-navigation-drawer--fixed {
   z-index: 52;
-}
+} */
 .v-navigation-drawer__content {
   padding-top: 35px !important;
 }

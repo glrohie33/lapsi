@@ -174,7 +174,7 @@ class UnderwriterController extends Controller
         }
     }
 
-    public function verifyBroker(Request $request)
+    public function verifyUnderwriter(Request $request)
     {
         if (Auth::check()) {
             $validator = Validator::make($request->all(), ['underwriters' => 'required|not_in:[]']);
@@ -185,7 +185,7 @@ class UnderwriterController extends Controller
                 $name = "$admin->surname $admin->firstname $admin->middlename";
                 $status = $request->status;
                 $data = ['status' => $status, 'verified_at' => date('Y-m-d H:i:s'), 'verified_by' => $name];
-                DB::table('underwriters')->whereIn('id', $request->brokers)->update($data);
+                DB::table('underwriters')->whereIn('id', $request->underwriters)->update($data);
                 $status = true;
             }
             return response()->json(compact('status'));

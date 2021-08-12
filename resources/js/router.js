@@ -175,8 +175,8 @@ var routes = [{
             name: 'edittaff',
             component: EditStaff
         }, {
-            path: "broker",
-            name: 'broker',
+            path: "brokers",
+            name: 'brokers',
             component: Broker
         }, {
             path: "broker/:id",

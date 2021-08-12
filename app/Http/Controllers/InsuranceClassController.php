@@ -113,9 +113,24 @@ class InsuranceClassController extends Controller
      * @param  \App\InsuranceClass  $insuranceClass
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, InsuranceClass $insuranceClass)
+    public function update(Request $request,  $id)
     {
         //
+        $input = $request->all();
+        $rules = ['name' => 'Required', 'type' => "required", 'code' => "required"];
+        $messages = ['type.required', 'Please select the type for insurance class', 'code.required' => 'insurance code is required'];
+        $validator = Validator::make($input, $rules, $messages);
+        if ($validator->fails()) {
+            $status = false;
+            $errors = $validator->errors();
+        } else {
+            if ($class = InsuranceClass::find($id)) {
+                $name = $class->update($input);
+                $status = true;
+            }
+        }
+
+        return response()->json(compact('status', 'errors'));
     }
 
     /**

@@ -168,6 +168,8 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
 /* harmony default export */ __webpack_exports__["default"] = ({
   data: function data() {
     return {
@@ -194,8 +196,11 @@ __webpack_require__.r(__webpack_exports__);
     loadData: function loadData() {
       var _this2 = this;
 
-      axios.get("".concat(index_url, "/api/roles/").concat($route.params.slug)).then(function (resp) {
-        _this2.permissions = resp.data.permissions;
+      axios.get("".concat(index_url, "/api/roles/").concat(this.$route.params.slug, "/edit")).then(function (resp) {
+        var role = resp.data.role;
+        console.log(role);
+        role.permissions = JSON.parse(role.permissions);
+        _this2.role = role;
       });
     },
     setActions: function setActions(event, perm) {
@@ -210,29 +215,32 @@ __webpack_require__.r(__webpack_exports__);
         this.role.permissions[perm] = false;
       }
     },
-    addRole: function addRole(event) {
+    editRole: function editRole(event) {
       var _this3 = this;
 
       var button = event.target;
       button.setAttribute("disabled", "true");
       this.errors = [];
       var data = setFormData(this.role);
-      axios.post("".concat(index_url, "/api/roles"), data).then(function (resp) {
+      data.append("_method", "PUT");
+      axios.post("".concat(index_url, "/api/roles/").concat(this.role.id), data).then(function (resp) {
         if (resp.data.status) {
           Swal.fire({
-            title: "Role Added",
-            text: "You have successfully added a new role",
+            title: "Role Edited",
+            text: "You have successfully edited a new role",
             icon: "success"
           });
           button.removeAttribute("disabled");
 
           _this3.$router.push({
-            path: "/admin/roles/"
+            path: "/admin/roles"
           });
         } else {
           _this3.errors = resp.data.errors;
           button.removeAttribute("disabled");
         }
+      })["catch"](function (e) {
+        button.removeAttribute("disabled");
       });
     },
     "delete": function _delete(code) {
@@ -282,64 +290,65 @@ var render = function() {
                           { staticClass: "row" },
                           [
                             _c("div", { staticClass: "col-12" }, [
-                              _c(
-                                "div",
-                                { staticClass: "form-group" },
-                                [
-                                  _c(
-                                    "label",
-                                    { attrs: { for: "first-name-vertical" } },
-                                    [_vm._v("Role Name")]
-                                  ),
-                                  _vm._v(" "),
-                                  _c("input", {
-                                    directives: [
-                                      {
-                                        name: "model",
-                                        rawName: "v-model",
-                                        value: _vm.role.name,
-                                        expression: "role.name"
-                                      }
-                                    ],
-                                    staticClass: "form-control",
-                                    attrs: {
-                                      type: "text",
-                                      id: "first-name-vertical",
-                                      placeholder: "role name",
-                                      name: "name",
-                                      required: ""
-                                    },
-                                    domProps: { value: _vm.role.name },
-                                    on: {
-                                      input: function($event) {
-                                        if ($event.target.composing) {
-                                          return
-                                        }
-                                        _vm.$set(
-                                          _vm.role,
-                                          "name",
-                                          $event.target.value
-                                        )
-                                      }
+                              _c("div", { staticClass: "form-group" }, [
+                                _c(
+                                  "label",
+                                  { attrs: { for: "first-name-vertical" } },
+                                  [_vm._v("Role Name")]
+                                ),
+                                _vm._v(" "),
+                                _c("input", {
+                                  directives: [
+                                    {
+                                      name: "model",
+                                      rawName: "v-model",
+                                      value: _vm.role.name,
+                                      expression: "role.name"
                                     }
-                                  }),
-                                  _vm._v(" "),
-                                  _vm._l(_vm.errors["name"], function(
-                                    error,
-                                    index
-                                  ) {
-                                    return _c(
-                                      "i",
-                                      {
-                                        key: index,
-                                        staticClass: "text-danger"
-                                      },
-                                      [_vm._v(_vm._s(error))]
+                                  ],
+                                  staticClass: "form-control",
+                                  attrs: {
+                                    type: "text",
+                                    id: "first-name-vertical",
+                                    placeholder: "role name",
+                                    name: "name",
+                                    required: ""
+                                  },
+                                  domProps: { value: _vm.role.name },
+                                  on: {
+                                    input: function($event) {
+                                      if ($event.target.composing) {
+                                        return
+                                      }
+                                      _vm.$set(
+                                        _vm.role,
+                                        "name",
+                                        $event.target.value
+                                      )
+                                    }
+                                  }
+                                }),
+                                _vm._v(" "),
+                                "name" in _vm.errors
+                                  ? _c(
+                                      "div",
+                                      _vm._l(_vm.errors["name"], function(
+                                        error,
+                                        index
+                                      ) {
+                                        return _c(
+                                          "i",
+                                          {
+                                            key: index,
+                                            staticClass: "text-danger"
+                                          },
+                                          [_vm._v(_vm._s(error))]
+                                        )
+                                      }),
+                                      0
                                     )
-                                  })
-                                ],
-                                2
-                              )
+                                  : _vm._e()
+                              ])
                             ]),
                             _vm._v(" "),
                             _vm._m(2),
@@ -1073,7 +1082,7 @@ var render = function() {
                           attrs: { type: "submit" },
                           on: {
                             click: function($event) {
-                              return _vm.addRole($event)
+                              return _vm.editRole($event)
                             }
                           }
                         },

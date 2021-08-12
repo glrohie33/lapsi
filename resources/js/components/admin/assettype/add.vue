@@ -34,7 +34,7 @@
                                 id="first-name-vertical"
                                 class="form-control"
                                 v-model="assettype.name"
-                                placeholder="role name"
+                                placeholder="Name"
                                 name="name"
                                 required
                               />
@@ -117,7 +117,7 @@ export default {
         if (resp.data.status) {
           Swal.fire({
             title: "Assettype Added",
-            text: "You have successfully added a new role",
+            text: "You have successfully added a asset type",
             icon: "success"
           });
           button.removeAttribute("disabled");

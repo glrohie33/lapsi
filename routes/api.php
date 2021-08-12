@@ -63,6 +63,6 @@ Route::middleware(['auth:api'])->group(function () {
     Route::post('user/verify', 'UserController@verifyUsers');
     Route::post('broker/verify', 'BrokerController@verifyBroker');
     Route::post('broker/addrank', 'BrokerController@addRank');
-    Route::post('underwriter/verify', 'UnderwriterController@verifyBroker');
+    Route::post('underwriter/verify', 'UnderwriterController@verifyUnderwriter');
     Route::post('underwriter/addrank', 'UnderwriterController@addRank');
 });

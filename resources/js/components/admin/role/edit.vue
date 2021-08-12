@@ -46,11 +46,13 @@
                                 name="name"
                                 required
                               />
-                              <i
-                                class="text-danger"
-                                v-for="(error,index) in errors['name']"
-                                :key="index"
-                              >{{error}}</i>
+                              <div v-if="'name' in errors">
+                                <i
+                                  class="text-danger"
+                                  v-for="(error,index) in errors['name']"
+                                  :key="index"
+                                >{{error}}</i>
+                              </div>
                             </div>
                           </div>
                           <div class="col12">
@@ -141,7 +143,7 @@
                     <div class="col-12">
                       <button
                         type="submit"
-                        @click="addRole($event)"
+                        @click="editRole($event)"
                         class="btn btn-primary mr-1 mb-1"
                       >Submit</button>
                       <button type="reset" class="btn btn-outline-warning mr-1 mb-1">Reset</button>
@@ -180,9 +182,14 @@ export default {
       });
     },
     loadData() {
-      axios.get(`${index_url}/api/roles/${$route.params.slug}`).then(resp => {
-        this.permissions = resp.data.permissions;
-      });
+      axios
+        .get(`${index_url}/api/roles/${this.$route.params.slug}/edit`)
+        .then(resp => {
+          var role = resp.data.role;
+          console.log(role);
+          role.permissions = JSON.parse(role.permissions);
+          this.role = role;
+        });
     },
     setActions(event, perm) {
       if (event.target.checked) {
@@ -196,25 +203,31 @@ export default {
         this.role.permissions[perm] = false;
       }
     },
-    addRole(event) {
+    editRole(event) {
       var button = event.target;
       button.setAttribute("disabled", "true");
       this.errors = [];
       var data = setFormData(this.role);
-      axios.post(`${index_url}/api/roles`, data).then(resp => {
-        if (resp.data.status) {
-          Swal.fire({
-            title: "Role Added",
-            text: "You have successfully added a new role",
-            icon: "success"
-          });
+      data.append("_method", "PUT");
+      axios
+        .post(`${index_url}/api/roles/${this.role.id}`, data)
+        .then(resp => {
+          if (resp.data.status) {
+            Swal.fire({
+              title: "Role Edited",
+              text: "You have successfully edited a new role",
+              icon: "success"
+            });
+            button.removeAttribute("disabled");
+            this.$router.push({ path: "/admin/roles" });
+          } else {
+            this.errors = resp.data.errors;
+            button.removeAttribute("disabled");
+          }
+        })
+        .catch(e => {
           button.removeAttribute("disabled");
-          this.$router.push({ path: "/admin/roles/" });
-        } else {
-          this.errors = resp.data.errors;
-          button.removeAttribute("disabled");
-        }
-      });
+        });
     },
     delete(code) {
       console.log("here");

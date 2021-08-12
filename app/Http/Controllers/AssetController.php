@@ -28,7 +28,7 @@ class AssetController extends Controller
         $assets = DB::table('assets')
             ->leftJoin('asset_types', 'asset_types.id', '=', 'assets.asset_type_id')
             ->leftJoin('agency', 'assets.agency_id', '=', 'agency.id')
-            ->leftJoin('insurance_classes as insurance', DB::raw("`insurance`.`id` MEMBER OF(`asset_types`.`insurance_classes`)"), '=', DB::raw(1))
+            ->leftJoin('insurance_classes as insurance', DB::raw("JSON_CONTAINS(`asset_types`.`insurance_classes`,`insurance`.`id`)"), '=', DB::raw(1))
             ->leftJoin('asset_insurances as AI', function ($join) {
                 $join = $join->on('assets.id', '=', 'AI.asset_id');
                 if (!empty($this->ins)) {
@@ -78,7 +78,7 @@ class AssetController extends Controller
     {
         //
         $input = $request->all();
-        
+
         $validator = Validator::make($input, ['agency_id' => 'required|not_in:[]', 'asset_details' => 'required|file|mimes:xlsx,xls,csv,txt', 'asset_type_id' => 'required'], ['asset_type_id.required' => 'Please select asset type', 'asset_details.required' => 'Please select assets']);
         if ($validator->fails()) {
             $status = false;

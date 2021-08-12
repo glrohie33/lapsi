@@ -59,7 +59,7 @@
                               />
                               <i
                                 class="text-danger"
-                                v-for="(error,index) in errors['rc_number   ']"
+                                v-for="(error,index) in errors['rc_number']"
                                 :key="index"
                               >{{error}}</i>
                             </div>
@@ -78,7 +78,7 @@
                               />
                               <i
                                 class="text-danger"
-                                v-for="(error,index) in errors['registered_name']"
+                                v-for="(error,index) in errors['ceo']"
                                 :key="index"
                               >{{error}}</i>
                             </div>
@@ -154,7 +154,7 @@
                               />
                               <i
                                 class="text-danger"
-                                v-for="(error,index) in errors['registered_name']"
+                                v-for="(error,index) in errors['phone']"
                                 :key="index"
                               >{{error}}</i>
                             </div>
