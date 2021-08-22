@@ -105,7 +105,8 @@ var routes = [{
         }
     ],
     meta: {
-        auth: true
+        auth: true,
+        admin: false
     }
 }, {
     path: "/admin",
@@ -309,7 +310,8 @@ var routes = [{
         }
     ],
     meta: {
-        auth: true
+        auth: true,
+        admin: true
     }
 
 }]
@@ -319,16 +321,39 @@ const router = new VueRouter({
     base: index_url
 });
 
+function verifyMeta(to, route, value)
+{
+    if (to.matched.some(r => r.meta[route] == value))
+    {
+        return true;
+    } else
+    {
+        return false;
+    };
+}
 router.beforeEach((to, from, next) =>
 {
-
-    if (to.matched.some(record => record.name == 'login' || record.name == 'home'))
+    if (to.matched.some(record => record.name == 'home' || record.name == "login" || record.name == "adminLogin"))
     {
+        var token;
+
         if ((token = window.localStorage.getItem('lapsiToken_')))
         {
             if (store.state.user != '')
             {
-                next({ path: '/portal' });
+                if (to.matched.some(record => record.meta.admin))
+                {
+                    if (!!store.state.user.role_id)
+                    {
+                        next({ path: "/admin/dashboard" });
+                    } else
+                    {
+                        next({ path: '/adminlogin' });
+                    }
+                } else 
+                {
+                    next({ path: '/portal' });
+                }
             } else
             {
                 axios.get(`${index_url}/api/user`, {
@@ -340,7 +365,19 @@ router.beforeEach((to, from, next) =>
                     {
                         store.commit('setUser', data.user);
                         store.commit('setRole', data.role);
-                        next({ path: '/portal' });
+                        if (to.matched.some(record => record.meta.admin))
+                        {
+                            if (!!store.state.user.role_id)
+                            {
+                                next({ path: "/admin/dashboard" });
+                            } else
+                            {
+                                next({ path: '/admin/login' });
+                            }
+                        } else 
+                        {
+                            next({ path: '/portal' });
+                        }
                     } else
                     {
                         window.localStorage.removeItem('lapsiToken_');
@@ -350,8 +387,12 @@ router.beforeEach((to, from, next) =>
             }
         } else
         {
-            next()
+            next({})
         }
+
+    } else
+    {
+        next();
     }
 
     if (to.matched.some(record => record.meta.auth))
@@ -362,7 +403,19 @@ router.beforeEach((to, from, next) =>
         {
             if (store.state.user != '')
             {
-                next();
+                if (to.matched.some(record => record.meta.admin))
+                {
+                    if (!!store.state.user.role_id)
+                    {
+                        next();
+                    } else
+                    {
+                        next({ path: '/admin/login' });
+                    }
+                } else 
+                {
+                    next();
+                }
             } else
             {
                 axios.get(`${index_url}/api/user`, {
@@ -374,7 +427,19 @@ router.beforeEach((to, from, next) =>
                     {
                         store.commit('setUser', data.user);
                         store.commit('setRole', data.role);
-                        next();
+                        if (to.matched.some(record => record.meta.admin))
+                        {
+                            if (!!data.user.role_id)
+                            {
+                                next();
+                            } else
+                            {
+                                next({ path: '/admin/login' });
+                            }
+                        } else
+                        {
+                            next();
+                        }
                     } else
                     {
                         window.localStorage.removeItem('lapsiToken_');
@@ -384,9 +449,17 @@ router.beforeEach((to, from, next) =>
             }
         } else
         {
-            next({
-                path: '/login'
-            })
+            if (to.matched.some(record => record.meta.admin))
+            {
+                next({
+                    path: '/admin/login'
+                })
+            } else
+            {
+                next({
+                    path: '/login'
+                })
+            }
         }
 
     } else

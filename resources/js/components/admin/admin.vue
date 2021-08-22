@@ -17,19 +17,27 @@ export default {
     search: search,
     foot: footer
   },
+  computed: {
+    user() {
+      return this.$store.state.user;
+    },
+    role() {
+      return this.$store.state.role;
+    }
+  },
   data() {
     return {
-      user: [],
-      role: []
     };
   },
   created() {
-    if (this.$store.state.user.oracle == "") {
-      this.user = this.$store.state.user;
-      this.role = this.$store.state.role;
-    } else {
-      this.$router.push({ path: "login" });
-    }
+    console.log(this.user);
+    console.log(this.role);
+    // if (this.$store.state.user.oracle == "") {
+    //   this.user = this.$store.state.user;
+    //   this.role = this.$store.state.role;
+    // } else {
+    //   this.$router.push({ path: "login" });
+    // }
   }
 };
 </script>

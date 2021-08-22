@@ -23,9 +23,7 @@ class Sms
             $client->messages->create($receiverNumber, [
                 'from' => $twilio_number,
                 'body' => $message
-            ]);
-
-            dd('SMS Sent Successfully.');
+            ]); 
         } catch (Exception $e) {
             dd("Error: " . $e->getMessage());
         }
