@@ -24,11 +24,11 @@ export default {
     };
   },
   created() {
-    if (this.$store.state.role != "") {
+    if (this.$store.state.user.oracle == "") {
       this.user = this.$store.state.user;
       this.role = this.$store.state.role;
     } else {
-      this.router.push({ path: "login" });
+      this.$router.push({ path: "login" });
     }
   }
 };

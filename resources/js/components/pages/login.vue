@@ -170,6 +170,7 @@ export default {
               "You have successfully updated your data you can now procced to login",
             icon: "success"
           });
+          window.localStorage.setItem("lapsiToken_", data.token);
           this.$router.push({ path: "/portal" });
         } else {
           this.errors = data.errors;
@@ -198,7 +199,7 @@ export default {
               this.form = true;
               this.intro = false;
             } else if (resp.data.user_status == "complete") {
-                window.localStorage.setItem("lapsiToken_", data.token);
+              window.localStorage.setItem("lapsiToken_", data.token);
               Swal.fire({
                 title: "Success",
                 text: "Login Successful",

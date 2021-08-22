@@ -38,11 +38,16 @@ class LoginController extends Controller
                 }
                 $user->password = bcrypt($pass);
                 $user->save();
-                $number = "+234" . $user->phone;
-                $sms = new Sms();
-                $sms->sendSms($number, $pass);
+                if ($_SERVER['HTTP_HOST'] == 'lapsi.test') {
+                    $otp = $pass;
+                } else {
+                    $number = "+234" . $user->phone;
+                    $sms = new Sms();
+                    $sms->sendSms($number, $pass);
+                }
+
                 // $sms = sendToken($number, $user->surname, $pass);
-                return response()->json(compact('status', 'user'));
+                return response()->json(compact('status', 'user', 'otp'));
             } else {
                 $status = false;
                 $errors['oracle_id'] = ['sorry your oracle id does not exist'];

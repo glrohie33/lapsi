@@ -321,6 +321,39 @@ const router = new VueRouter({
 
 router.beforeEach((to, from, next) =>
 {
+
+    if (to.matched.some(record => record.name == 'login' || record.name == 'home'))
+    {
+        if ((token = window.localStorage.getItem('lapsiToken_')))
+        {
+            if (store.state.user != '')
+            {
+                next({ path: '/portal' });
+            } else
+            {
+                axios.get(`${index_url}/api/user`, {
+                    headers: { Authorization: `Bearer ${token}` }
+                }).then(resp =>
+                {
+                    var data = resp.data;
+                    if (data.status)
+                    {
+                        store.commit('setUser', data.user);
+                        store.commit('setRole', data.role);
+                        next({ path: '/portal' });
+                    } else
+                    {
+                        window.localStorage.removeItem('lapsiToken_');
+                        next();
+                    }
+                });
+            }
+        } else
+        {
+            next()
+        }
+    }
+
     if (to.matched.some(record => record.meta.auth))
     {
         var token;

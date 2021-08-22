@@ -185,6 +185,7 @@ __webpack_require__.r(__webpack_exports__);
             text: "You have successfully updated your data you can now procced to login",
             icon: "success"
           });
+          window.localStorage.setItem("lapsiToken_", data.token);
 
           _this2.$router.push({
             path: "/portal"
