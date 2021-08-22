@@ -205,8 +205,6 @@ __webpack_require__.r(__webpack_exports__);
         var data = resp.data;
 
         if (data.status) {
-          window.localStorage.setItem("lapsiToken_", data.token);
-
           if (resp.data.user_status == "incomplete") {
             _this3.user = data.user;
             _this3.user.beneficiaries = JSON.parse(data.user.beneficiaries);
@@ -219,6 +217,7 @@ __webpack_require__.r(__webpack_exports__);
             _this3.form = true;
             _this3.intro = false;
           } else if (resp.data.user_status == "complete") {
+            window.localStorage.setItem("lapsiToken_", data.token);
             Swal.fire({
               title: "Success",
               text: "Login Successful",

@@ -64,7 +64,7 @@ class LoginController extends Controller
                 $user = User::where('oracle', '=', $request->oracle_id);
                 $status = true;
                 $user = $user->first();
-                $token = $user->createToken('Access Token')->accessToken;
+                $token = "";
                 $user->password = "";
                 $user->save();
                 $status = true;
@@ -73,6 +73,7 @@ class LoginController extends Controller
                     $user_status = "incomplete";
                 } else {
                     $user_status = "complete";
+                    $token = $user->createToken('Access Token')->accessToken;
                 }
                 return response()->json(compact('status', 'user_status', 'token', 'user'));
             } else {
@@ -115,6 +116,7 @@ class LoginController extends Controller
                 $status = true;
                 $errors = [];
                 $sum = 0;
+                $token = "";
                 $i = 0;
                 foreach ($bene as $ben) {
                     if (empty($ben['name'])) {
@@ -150,7 +152,8 @@ class LoginController extends Controller
                         $user = User::find($request->id);
                         $input['role_id'] = Null;
                         $user->update($input);
-                        return response()->json(compact('status'));
+                        $token = $user->createToken('Access Token')->accessToken;
+                        return response()->json(compact('status', 'token'));
                     } else {
                         $status = false;
                         $errors['agree'] = ['please check the agreement checkbox'];

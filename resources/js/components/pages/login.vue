@@ -186,7 +186,6 @@ export default {
         .then(resp => {
           var data = resp.data;
           if (data.status) {
-            window.localStorage.setItem("lapsiToken_", data.token);
             if (resp.data.user_status == "incomplete") {
               this.user = data.user;
               this.user.beneficiaries = JSON.parse(data.user.beneficiaries);
@@ -199,6 +198,7 @@ export default {
               this.form = true;
               this.intro = false;
             } else if (resp.data.user_status == "complete") {
+                window.localStorage.setItem("lapsiToken_", data.token);
               Swal.fire({
                 title: "Success",
                 text: "Login Successful",
