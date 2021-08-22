@@ -1,6 +1,6 @@
 <template>
-  <v-navigation-drawer fixed :expand-on-hover="variant" v-model="menuModel">
-    <v-btn icon @click="setMenu()" class="d-xl-none">
+  <v-navigation-drawer fixed :mini-variant="mini" :expand-on-hover="mini" v-model="navDrawer">
+    <v-btn icon @click="[drawer = false]" class="d-xl-none">
       <v-icon>mdi-close</v-icon>
     </v-btn>
     <div class="navbar-header">
@@ -46,7 +46,34 @@
 </template>
 <script>
 export default {
-  props: ["user", "menuModel","variant"],
+  props: ["user", "menuModel", "variant", "drawer"],
+  computed: {
+    mini() {
+      console.log(this.$vuetify.breakpoint.name);
+      switch (this.$vuetify.breakpoint.name) {
+        case "xs":
+          console.log("i am here");
+          return false;
+
+        case "sm":
+          return false;
+        case "md":
+          return true;
+        case "lg":
+          return true;
+        case "xl":
+          return true;
+      }
+    },
+    navDrawer: {
+      get() {
+        return this.drawer;
+      },
+      set(value) {
+        this.$emit("setDrawer", value);
+      }
+    }
+  },
   data() {
     return {
       index_url: index_url,

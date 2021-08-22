@@ -114,6 +114,8 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
   components: {
@@ -247,6 +249,10 @@ __webpack_require__.r(__webpack_exports__);
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _fileuploadmodal_vue__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../fileuploadmodal.vue */ "./resources/js/components/fileuploadmodal.vue");
+//
+//
+//
+//
 //
 //
 //
@@ -863,271 +869,295 @@ var render = function() {
                         _c("div", { staticClass: "row m-0" }, [
                           _vm._m(0),
                           _vm._v(" "),
-                          _c("div", { staticClass: "col-lg-6 col-12 p-0" }, [
-                            _c(
-                              "div",
-                              { staticClass: "card rounded-1 mb-0 px-2" },
-                              [
-                                _vm._m(1),
-                                _vm._v(" "),
-                                _c(
-                                  "div",
-                                  {
-                                    directives: [
-                                      {
-                                        name: "show",
-                                        rawName: "v-show",
-                                        value: _vm.oracle,
-                                        expression: "oracle"
-                                      }
-                                    ],
-                                    staticClass: "card-content"
-                                  },
-                                  [
-                                    _c(
-                                      "div",
-                                      { staticClass: "card-body pt-1" },
-                                      [
-                                        _c(
-                                          "form",
-                                          {
-                                            on: {
-                                              submit: function($event) {
-                                                return _vm.verifyId($event)
+                          _c(
+                            "div",
+                            { staticClass: "col-lg-6 col-12 p-0 login-box" },
+                            [
+                              _c(
+                                "div",
+                                { staticClass: "card rounded-1 mb-0 px-2" },
+                                [
+                                  _vm._m(1),
+                                  _vm._v(" "),
+                                  _c(
+                                    "div",
+                                    {
+                                      directives: [
+                                        {
+                                          name: "show",
+                                          rawName: "v-show",
+                                          value: _vm.oracle,
+                                          expression: "oracle"
+                                        }
+                                      ],
+                                      staticClass: "card-content"
+                                    },
+                                    [
+                                      _c(
+                                        "div",
+                                        { staticClass: "card-body pt-1" },
+                                        [
+                                          _c(
+                                            "form",
+                                            {
+                                              on: {
+                                                submit: function($event) {
+                                                  return _vm.verifyId($event)
+                                                }
                                               }
-                                            }
-                                          },
-                                          [
-                                            _c(
-                                              "fieldset",
-                                              {
-                                                staticClass:
-                                                  "form-label-group form-group position-relative has-icon-left"
-                                              },
-                                              [
-                                                _c("input", {
-                                                  directives: [
-                                                    {
-                                                      name: "model",
-                                                      rawName: "v-model",
-                                                      value: _vm.oracleId,
-                                                      expression: "oracleId"
-                                                    }
-                                                  ],
-                                                  staticClass: "form-control",
-                                                  attrs: {
-                                                    type: "text",
-                                                    id: "user-name",
-                                                    placeholder: "Oracle Id",
-                                                    required: ""
-                                                  },
-                                                  domProps: {
-                                                    value: _vm.oracleId
-                                                  },
-                                                  on: {
-                                                    input: function($event) {
-                                                      if (
-                                                        $event.target.composing
-                                                      ) {
-                                                        return
-                                                      }
-                                                      _vm.oracleId =
-                                                        $event.target.value
-                                                    }
-                                                  }
-                                                }),
-                                                _vm._v(" "),
-                                                _vm._l(
-                                                  _vm.errors.oracle_id,
-                                                  function(x, index) {
-                                                    return _c(
-                                                      "i",
+                                            },
+                                            [
+                                              _c(
+                                                "fieldset",
+                                                {
+                                                  staticClass:
+                                                    "form-label-group form-group position-relative has-icon-left"
+                                                },
+                                                [
+                                                  _c("input", {
+                                                    directives: [
                                                       {
-                                                        key: index,
-                                                        staticClass:
-                                                          "text-danger"
-                                                      },
-                                                      [_vm._v(_vm._s(x))]
-                                                    )
-                                                  }
-                                                ),
-                                                _vm._v(" "),
-                                                _c(
-                                                  "label",
-                                                  {
-                                                    attrs: { for: "user-name" }
-                                                  },
-                                                  [_vm._v("Oracle Id")]
-                                                )
-                                              ],
-                                              2
-                                            ),
-                                            _vm._v(" "),
-                                            _c(
-                                              "div",
-                                              { staticClass: "col-md-12" },
-                                              [
-                                                _c(
-                                                  "button",
-                                                  {
-                                                    staticClass:
-                                                      "btn btn-primary btn-inline",
-                                                    attrs: { type: "submit" },
-                                                    on: {
-                                                      click: function($event) {
-                                                        return _vm.verifyId(
-                                                          $event
-                                                        )
+                                                        name: "model",
+                                                        rawName: "v-model",
+                                                        value: _vm.oracleId,
+                                                        expression: "oracleId"
                                                       }
-                                                    }
-                                                  },
-                                                  [_vm._v("Login")]
-                                                )
-                                              ]
-                                            )
-                                          ]
-                                        )
-                                      ]
-                                    )
-                                  ]
-                                ),
-                                _vm._v(" "),
-                                _c(
-                                  "div",
-                                  {
-                                    directives: [
-                                      {
-                                        name: "show",
-                                        rawName: "v-show",
-                                        value: _vm.password,
-                                        expression: "password"
-                                      }
-                                    ],
-                                    staticClass: "card-content"
-                                  },
-                                  [
-                                    _c(
-                                      "div",
-                                      { staticClass: "card-body pt-1" },
-                                      [
-                                        _c(
-                                          "form",
-                                          {
-                                            on: {
-                                              submit: function($event) {
-                                                return _vm.login($event)
-                                              }
-                                            }
-                                          },
-                                          [
-                                            _c(
-                                              "fieldset",
-                                              {
-                                                staticClass:
-                                                  "form-label-group form-group position-relative has-icon-left"
-                                              },
-                                              [
-                                                _c("input", {
-                                                  directives: [
-                                                    {
-                                                      name: "model",
-                                                      rawName: "v-model",
-                                                      value: _vm.otp,
-                                                      expression: "otp"
-                                                    }
-                                                  ],
-                                                  staticClass: "form-control",
-                                                  attrs: {
-                                                    type: "text",
-                                                    id: "user-name",
-                                                    placeholder: "OTP",
-                                                    required: ""
-                                                  },
-                                                  domProps: { value: _vm.otp },
-                                                  on: {
-                                                    input: function($event) {
-                                                      if (
-                                                        $event.target.composing
-                                                      ) {
-                                                        return
-                                                      }
-                                                      _vm.otp =
-                                                        $event.target.value
-                                                    }
-                                                  }
-                                                }),
-                                                _vm._v(" "),
-                                                _vm._l(_vm.errors.otp, function(
-                                                  x,
-                                                  index
-                                                ) {
-                                                  return _c(
-                                                    "i",
-                                                    {
-                                                      key: index,
-                                                      staticClass: "text-danger"
+                                                    ],
+                                                    staticClass: "form-control",
+                                                    attrs: {
+                                                      type: "text",
+                                                      id: "user-name",
+                                                      placeholder: "Oracle Id",
+                                                      required: ""
                                                     },
-                                                    [_vm._v(_vm._s(x))]
+                                                    domProps: {
+                                                      value: _vm.oracleId
+                                                    },
+                                                    on: {
+                                                      input: function($event) {
+                                                        if (
+                                                          $event.target
+                                                            .composing
+                                                        ) {
+                                                          return
+                                                        }
+                                                        _vm.oracleId =
+                                                          $event.target.value
+                                                      }
+                                                    }
+                                                  }),
+                                                  _vm._v(" "),
+                                                  "oracle_id" in _vm.errors
+                                                    ? _c(
+                                                        "div",
+                                                        _vm._l(
+                                                          _vm.errors.oracle_id,
+                                                          function(x, index) {
+                                                            return _c(
+                                                              "i",
+                                                              {
+                                                                key: index,
+                                                                staticClass:
+                                                                  "text-danger"
+                                                              },
+                                                              [
+                                                                _vm._v(
+                                                                  _vm._s(x)
+                                                                )
+                                                              ]
+                                                            )
+                                                          }
+                                                        ),
+                                                        0
+                                                      )
+                                                    : _vm._e(),
+                                                  _vm._v(" "),
+                                                  _c(
+                                                    "label",
+                                                    {
+                                                      attrs: {
+                                                        for: "user-name"
+                                                      }
+                                                    },
+                                                    [_vm._v("Oracle Id")]
                                                   )
-                                                }),
-                                                _vm._v(" "),
-                                                _c(
-                                                  "label",
-                                                  {
-                                                    attrs: { for: "user-name" }
-                                                  },
-                                                  [_vm._v("OTP")]
-                                                )
-                                              ],
-                                              2
-                                            )
-                                          ]
-                                        ),
-                                        _vm._v(" "),
-                                        _c(
-                                          "div",
-                                          { staticClass: "col-md-12" },
-                                          [
-                                            _c(
-                                              "button",
-                                              {
-                                                staticClass:
-                                                  "btn btn-info btn-inline",
-                                                on: {
-                                                  click: function($event) {
-                                                    ;[
-                                                      (_vm.oracle = true),
-                                                      (_vm.password = false)
-                                                    ]
-                                                  }
+                                                ]
+                                              ),
+                                              _vm._v(" "),
+                                              _c(
+                                                "div",
+                                                { staticClass: "col-md-12" },
+                                                [
+                                                  _c(
+                                                    "button",
+                                                    {
+                                                      staticClass:
+                                                        "btn btn-primary btn-inline",
+                                                      attrs: { type: "submit" },
+                                                      on: {
+                                                        click: function(
+                                                          $event
+                                                        ) {
+                                                          return _vm.verifyId(
+                                                            $event
+                                                          )
+                                                        }
+                                                      }
+                                                    },
+                                                    [_vm._v("Login")]
+                                                  )
+                                                ]
+                                              )
+                                            ]
+                                          )
+                                        ]
+                                      )
+                                    ]
+                                  ),
+                                  _vm._v(" "),
+                                  _c(
+                                    "div",
+                                    {
+                                      directives: [
+                                        {
+                                          name: "show",
+                                          rawName: "v-show",
+                                          value: _vm.password,
+                                          expression: "password"
+                                        }
+                                      ],
+                                      staticClass: "card-content"
+                                    },
+                                    [
+                                      _c(
+                                        "div",
+                                        { staticClass: "card-body pt-1" },
+                                        [
+                                          _c(
+                                            "form",
+                                            {
+                                              on: {
+                                                submit: function($event) {
+                                                  return _vm.login($event)
                                                 }
-                                              },
-                                              [_vm._v("back")]
-                                            ),
-                                            _vm._v(" "),
-                                            _c(
-                                              "button",
-                                              {
-                                                staticClass:
-                                                  "btn btn-primary btn-inline",
-                                                attrs: { type: "submit" },
-                                                on: {
-                                                  click: function($event) {
-                                                    return _vm.login($event)
+                                              }
+                                            },
+                                            [
+                                              _c(
+                                                "fieldset",
+                                                {
+                                                  staticClass:
+                                                    "form-label-group form-group position-relative has-icon-left"
+                                                },
+                                                [
+                                                  _c("input", {
+                                                    directives: [
+                                                      {
+                                                        name: "model",
+                                                        rawName: "v-model",
+                                                        value: _vm.otp,
+                                                        expression: "otp"
+                                                      }
+                                                    ],
+                                                    staticClass: "form-control",
+                                                    attrs: {
+                                                      type: "text",
+                                                      id: "user-name",
+                                                      placeholder: "OTP",
+                                                      required: ""
+                                                    },
+                                                    domProps: {
+                                                      value: _vm.otp
+                                                    },
+                                                    on: {
+                                                      input: function($event) {
+                                                        if (
+                                                          $event.target
+                                                            .composing
+                                                        ) {
+                                                          return
+                                                        }
+                                                        _vm.otp =
+                                                          $event.target.value
+                                                      }
+                                                    }
+                                                  }),
+                                                  _vm._v(" "),
+                                                  _vm._l(
+                                                    _vm.errors.otp,
+                                                    function(x, index) {
+                                                      return _c(
+                                                        "i",
+                                                        {
+                                                          key: index,
+                                                          staticClass:
+                                                            "text-danger"
+                                                        },
+                                                        [_vm._v(_vm._s(x))]
+                                                      )
+                                                    }
+                                                  ),
+                                                  _vm._v(" "),
+                                                  _c(
+                                                    "label",
+                                                    {
+                                                      attrs: {
+                                                        for: "user-name"
+                                                      }
+                                                    },
+                                                    [_vm._v("OTP")]
+                                                  )
+                                                ],
+                                                2
+                                              )
+                                            ]
+                                          ),
+                                          _vm._v(" "),
+                                          _c(
+                                            "div",
+                                            { staticClass: "col-md-12" },
+                                            [
+                                              _c(
+                                                "button",
+                                                {
+                                                  staticClass:
+                                                    "btn btn-info btn-inline",
+                                                  on: {
+                                                    click: function($event) {
+                                                      ;[
+                                                        (_vm.oracle = true),
+                                                        (_vm.password = false)
+                                                      ]
+                                                    }
                                                   }
-                                                }
-                                              },
-                                              [_vm._v("Login")]
-                                            )
-                                          ]
-                                        )
-                                      ]
-                                    )
-                                  ]
-                                )
-                              ]
-                            )
-                          ])
+                                                },
+                                                [_vm._v("back")]
+                                              ),
+                                              _vm._v(" "),
+                                              _c(
+                                                "button",
+                                                {
+                                                  staticClass:
+                                                    "btn btn-primary btn-inline",
+                                                  attrs: { type: "submit" },
+                                                  on: {
+                                                    click: function($event) {
+                                                      return _vm.login($event)
+                                                    }
+                                                  }
+                                                },
+                                                [_vm._v("Login")]
+                                              )
+                                            ]
+                                          )
+                                        ]
+                                      )
+                                    ]
+                                  )
+                                ]
+                              )
+                            ]
+                          )
                         ])
                       ]
                     )
@@ -2163,40 +2193,75 @@ var render = function() {
                                 _vm._v("Benificiary Identification")
                               ]),
                               _vm._v(" "),
-                              _c("input", {
-                                directives: [
-                                  {
-                                    name: "model",
-                                    rawName: "v-model",
-                                    value:
-                                      _vm.user.beneficiaries[index]
-                                        .identification,
-                                    expression:
-                                      "user.beneficiaries[index].identification"
-                                  }
-                                ],
-                                staticClass: "form-control",
-                                attrs: {
-                                  type: "text",
-                                  placeholder: "Beneficiary Identification *"
-                                },
-                                domProps: {
-                                  value:
-                                    _vm.user.beneficiaries[index].identification
-                                },
-                                on: {
-                                  input: function($event) {
-                                    if ($event.target.composing) {
-                                      return
+                              _c(
+                                "select",
+                                {
+                                  directives: [
+                                    {
+                                      name: "model",
+                                      rawName: "v-model",
+                                      value:
+                                        _vm.user.beneficiaries[index]
+                                          .identification,
+                                      expression:
+                                        "user.beneficiaries[index].identification"
                                     }
-                                    _vm.$set(
-                                      _vm.user.beneficiaries[index],
-                                      "identification",
-                                      $event.target.value
-                                    )
+                                  ],
+                                  staticClass: "form-control",
+                                  attrs: {
+                                    placeholder: "Beneficiary Identification *"
+                                  },
+                                  on: {
+                                    change: function($event) {
+                                      var $$selectedVal = Array.prototype.filter
+                                        .call($event.target.options, function(
+                                          o
+                                        ) {
+                                          return o.selected
+                                        })
+                                        .map(function(o) {
+                                          var val =
+                                            "_value" in o ? o._value : o.value
+                                          return val
+                                        })
+                                      _vm.$set(
+                                        _vm.user.beneficiaries[index],
+                                        "identification",
+                                        $event.target.multiple
+                                          ? $$selectedVal
+                                          : $$selectedVal[0]
+                                      )
+                                    }
                                   }
-                                }
-                              }),
+                                },
+                                [
+                                  _c("option", { attrs: { value: "" } }, [
+                                    _vm._v(
+                                      "Select Beneficiary Mode Of Identification"
+                                    )
+                                  ]),
+                                  _vm._v(" "),
+                                  _c(
+                                    "option",
+                                    { attrs: { value: "national ID" } },
+                                    [_vm._v("National Identity Card")]
+                                  ),
+                                  _vm._v(" "),
+                                  _c(
+                                    "option",
+                                    {
+                                      attrs: { value: "international passport" }
+                                    },
+                                    [_vm._v("International Passport")]
+                                  ),
+                                  _vm._v(" "),
+                                  _c(
+                                    "option",
+                                    { attrs: { value: "driver's licence" } },
+                                    [_vm._v("Driver's Licence")]
+                                  )
+                                ]
+                              ),
                               _vm._v(" "),
                               _c(
                                 "p",

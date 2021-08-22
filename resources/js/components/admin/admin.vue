@@ -2,7 +2,6 @@
   <div>
     <navi :user="user" :role="role"></navi>
     <search></search>
-    <userMenu :user="user" :role="role"></userMenu>
     <router-view :role="role" :user="user"></router-view>
     <foot></foot>
   </div>
@@ -10,14 +9,12 @@
 <script>
 import nav from "./navigation";
 import search from "./searchBar";
-import menu from "./menu";
 import footer from "./footer";
 
 export default {
   components: {
     navi: nav,
     search: search,
-    userMenu: menu,
     foot: footer
   },
   data() {

@@ -33,55 +33,7 @@
                       >
                         <template v-slot:top>
                           <v-dialog v-model="dialog" max-width="600px">
-                            <div class="card">
-                              <div class="card-header">
-                                <h4 class="card-title">Edit</h4>
-                              </div>
-                              <div class="card-content">
-                                <div class="card-body">
-                                  <form
-                                    class="form form-vertical"
-                                    style="width:90%; margin:0px auto;"
-                                  >
-                                    <div class="form-body">
-                                      <div class="row">
-                                        <div class="col-12">
-                                          <div class="form-group">
-                                            <label for="first-name-vertical">Rank Name</label>
-                                            <input
-                                              type="text"
-                                              id="first-name-vertical"
-                                              class="form-control"
-                                              v-model="asset.name"
-                                              placeholder="role name"
-                                              name="name"
-                                              required
-                                            />
-                                            <i
-                                              class="text-danger"
-                                              v-for="(error,index) in errors['name']"
-                                              :key="index"
-                                            >{{error}}</i>
-                                          </div>
-                                        </div>
-                                      </div>
-                                    </div>
-                                  </form>
-                                  <div class="col-12">
-                                    <button
-                                      type="submit"
-                                      @click="edit($event)"
-                                      class="btn btn-primary mr-1 mb-1"
-                                    >Submit</button>
-                                    <button
-                                      type="reset"
-                                      @click="[dialog=false]"
-                                      class="btn btn-outline-warning mr-1 mb-1"
-                                    >Reset</button>
-                                  </div>
-                                </div>
-                              </div>
-                            </div>
+                            <EditAsset :asset="asset" @edited="edited()"></EditAsset>
                           </v-dialog>
                         </template>
                         <template v-slot:item.actions="{item}">
@@ -102,13 +54,25 @@
   </div>
 </template>
 <script>
+import Edit from "./edit";
 export default {
+  components: {
+    EditAsset: Edit
+  },
   data() {
     return {
       headers: [
         {
           text: "Name",
           value: "name"
+        },
+        {
+          text: "Fields",
+          value: "fields"
+        },
+        {
+          text: "Unique Field",
+          value: "unique_field"
         },
         {
           text: "Insurance Classes",
@@ -163,29 +127,9 @@ export default {
       this.dialog = true;
       Object.assign(this.asset, item);
     },
-    edit(event) {
-      var button = event.target;
-      button.setAttribute("disabled", "true");
-      this.errors = [];
-      var data = setFormData(this.asset);
-      data.append("_method", "PUT");
-      axios
-        .post(`${index_url}/api/assettype/${this.asset.id}`, data)
-        .then(resp => {
-          if (resp.data.status) {
-            Swal.fire({
-              title: "Asset Rank Edited",
-              text: "Success",
-              icon: "success"
-            });
-            this.getData();
-            button.removeAttribute("disabled");
-            this.dialog = false;
-          } else {
-            this.errors = resp.data.errors;
-            button.removeAttribute("disabled");
-          }
-        });
+    edited() {
+      this.dialog = false;
+      this.getData();
     },
     deleteItem(id) {
       axios

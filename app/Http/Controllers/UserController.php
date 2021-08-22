@@ -72,8 +72,18 @@ class UserController extends Controller
     {
         if (!empty($request->agencyids)) {
 
-            $id = json_encode($request->agencyids);
-            $users = DB::table('users')->where(DB::raw("JSON_OVERLAPS(agency_id,'$id')"), '1')->get();
+            $ids = $request->agencyids;
+            $users = DB::table('users');
+            $i = 0;
+            while ($i < count($ids)) {
+                if ($i > 0) {
+                    $users =  $users->orWhere(DB::raw("JSON_CONTAINS(`agency_id`,$ids[$i])"), '1');
+                } else {
+                    $users =  $users->where(DB::raw("JSON_CONTAINS(`agency_id`,$ids[$i])"), '1');
+                }
+                $i++;
+            }
+            $users = $users->get();
             return response()->json(compact('users'));
         }
     }

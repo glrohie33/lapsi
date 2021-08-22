@@ -295,8 +295,8 @@ var routes = [{
             name: 'addbusiness',
             component: AddBusiness
         }, {
-            path: "claim",
-            name: 'claim',
+            path: "claims",
+            name: 'All claims',
             component: Claim
         }, {
             path: "claim/:id",

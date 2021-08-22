@@ -54,16 +54,16 @@ class AssetTypeController extends Controller
     {
         //
         $input = $request->all();
-        $validator = Validator::make($input, ['name' => 'Required']);
+        $validator = Validator::make($input, ['name' => 'Required', 'unique_field' => 'Required', 'fields' => 'Required']);
         if ($validator->fails()) {
             $status = false;
             $error = $validator->errors();
         } else {
-            $agency_type = AssetType::create($input);
+            $asset_type = AssetType::create($input);
             $status = true;
         }
 
-        return response()->json(compact('status', 'error', 'agency_type'));
+        return response()->json(compact('status', 'error', 'asset_type'));
     }
 
     /**
@@ -83,9 +83,10 @@ class AssetTypeController extends Controller
      * @param  \App\AssetType  $assetType
      * @return \Illuminate\Http\Response
      */
-    public function edit(AssetType $assetType)
+    public function edit(Request $request)
     {
         //
+
     }
 
     /**
@@ -95,9 +96,21 @@ class AssetTypeController extends Controller
      * @param  \App\AssetType  $assetType
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, AssetType $assetType)
+    public function update(Request $request, $id)
     {
         //
+        $input = $request->all();
+        $validator = Validator::make($input, ['name' => 'Required', 'unique_field' => 'Required', 'fields' => 'Required']);
+        if ($validator->fails()) {
+            $status = false;
+            $error = $validator->errors();
+        } else {
+            $assetType = AssetType::findOrFail($id);
+            $asset_type = $assetType->Update($input);
+            $status = true;
+        }
+
+        return response()->json(compact('status', 'error', 'asset_type'));
     }
 
     /**

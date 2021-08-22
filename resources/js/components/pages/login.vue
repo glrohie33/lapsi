@@ -13,7 +13,7 @@
                   <div class="col-lg-6 d-lg-block d-none text-center align-self-center px-1 py-0">
                     <img src="public/app-assets/images/pages/login.png" alt="branding logo" />
                   </div>
-                  <div class="col-lg-6 col-12 p-0">
+                  <div class="col-lg-6 col-12 p-0 login-box">
                     <div class="card rounded-1 mb-0 px-2">
                       <div class="card-header pb-1">
                         <div class="card-title">

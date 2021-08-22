@@ -45,6 +45,45 @@
                               >{{error}}</i>
                             </div>
                           </div>
+                          <div class="col-12">
+                            <div class="form-group">
+                              <label for="first-name-vertical">Unique Fields</label>
+                              <input
+                                type="text"
+                                id="first-name-vertical"
+                                class="form-control"
+                                v-model="assettype.unique_field"
+                                placeholder="Unique Field"
+                                name="name"
+                                required
+                              />
+                              <i
+                                class="text-danger"
+                                v-for="(error,index) in errors['unique_field']"
+                                :key="index"
+                              >{{error}}</i>
+                            </div>
+                          </div>
+                          <div class="col-12">
+                            <div class="form-group">
+                              <label for="first-name-vertical">Assettype Fields/Column Names</label>
+                              <textarea
+                                type="text"
+                                id="first-name-vertical"
+                                class="form-control"
+                                v-model="assettype.fields"
+                                placeholder="Fields/Columns"
+                                name="name"
+                                required
+                              ></textarea>
+                              <i
+                                class="text-danger"
+                                v-for="(error,index) in errors['fields']"
+                                :key="index"
+                              >{{error}}</i>
+                              <span>NB:This are the field names/Column Names on the Excel sheets when uploading data for this Asset Type.Seperate the fields names/Column names by comma with</span>
+                            </div>
+                          </div>
                         </div>
                         <h5 style="text-align:center;">Select Insurance Class</h5>
                         <div class="row">
@@ -91,6 +130,8 @@ export default {
     return {
       assettype: {
         name: "",
+        field: "",
+        unique_field: "",
         insurance_classes: []
       },
       insuranceClasses: [],

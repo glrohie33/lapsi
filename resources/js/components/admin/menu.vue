@@ -1,5 +1,5 @@
 <template>
-  <v-navigation-drawer expand-on-hover fixed>
+  <v-navigation-drawer :mini-variant="mini" :expand-on-hover="mini" fixed v-model="navDrawer">
     <div class="navbar-header">
       <ul class="nav navbar-nav flex-row">
         <li class="nav-item mr-auto">
@@ -37,7 +37,7 @@
 </template>
 <script>
 export default {
-  props: ["user", "role"],
+  props: ["user", "role", "drawer"],
   data() {
     return {
       index_url: index_url,
@@ -79,6 +79,16 @@ export default {
             }
           ],
           icon: "mdi-briefcase-account"
+        },
+        {
+          title: "Agency Types",
+          items: [
+            {
+              title: "List",
+              path: { path: "/admin/agencytypes" }
+            }
+          ],
+          icon: "mdi-office-building"
         },
         {
           title: "Role",
@@ -151,6 +161,20 @@ export default {
           icon: "mdi-handshake"
         },
         {
+          title: "Claims",
+          items: [
+            {
+              title: "List",
+              path: { path: "/admin/claims" }
+            },
+            {
+              title: "Add New",
+              path: { path: "/admin/addclaim" }
+            }
+          ],
+          icon: "mdi-handshake"
+        },
+        {
           title: "Policy",
           items: [
             {
@@ -207,20 +231,48 @@ export default {
           icon: "mdi-shield-half-full"
         },
         {
-          title: "Agency Types",
+          title: "Insurance Type",
           items: [
             {
               title: "List",
-              path: { path: "/admin/agencytypes" }
+              path: { path: "/admin/insurancetype" }
+            },
+            {
+              title: "Add New",
+              path: { path: "/admin/addinsurancetype" }
             }
           ],
-          icon: "mdi-office-building"
+          icon: "mdi-shield-half-full"
         }
       ]
     };
   },
   created() {
     // this.role = this.$store.state.role;
+  },
+  computed: {
+    mini() {
+      switch (this.$vuetify.breakpoint.name) {
+        case "xs":
+          return false;
+        case "sm":
+          return false;
+        case "md":
+          return true;
+        case "lg":
+          return true;
+        case "xl":
+          return true;
+      }
+    },
+    navDrawer: {
+      get() {
+        return this.drawer;
+      },
+      set(value) {
+        this.$emit("setDrawer", value);
+      }
+    }
   },
   methods: {
     permissions(name, permit = null) {

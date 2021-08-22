@@ -68,14 +68,18 @@
                         <template v-slot:default>
                           <thead>
                             <tr>
-                              <th v-for="(x,index) in headers" :key="index">{{x}}</th>'
+                              <th>AGENCY</th>
+                              <th>ASSET TYPE</th>
+                              <th v-for="(x,indx) in headers" :key="indx">{{x}}</th>
                               <th>Actions</th>
                             </tr>
                           </thead>
                           <tbody>
                             <tr v-for="(x,index) in items" :key="index">
+                              <td>{{JSON.parse(x.asset_details)['agency']}}</td>
+                              <td>{{JSON.parse(x.asset_details)['asset_type']}}</td>
                               <td
-                                v-for="(y,ind) in headers"
+                                v-for="(y,ind) in keys"
                                 :key="ind"
                               >{{JSON.parse(x.asset_details)[y]}}</td>
                               <td>
@@ -102,6 +106,7 @@ export default {
   data() {
     return {
       headers: [],
+      keys: [],
       options: {},
       total: 0,
       loading: true,
@@ -127,9 +132,22 @@ export default {
     },
     assetType: {
       handler() {
-        console.log("here");
         if (this.assetType > 0) {
-          this.getData(true);
+          var assetType = this.assetTypes.find(a => a.id == this.assetType);
+          this.headers = assetType.fields
+            .trim()
+            .toUpperCase()
+            .split(",");
+          this.keys = assetType.fields
+            .trim()
+            .toLowerCase()
+            .replaceAll(" ", "_")
+            .split(",");
+          this.items = [];
+          this.getData(false);
+        } else {
+          this.headers = [];
+          this.items = [];
         }
       }
     }
@@ -151,27 +169,8 @@ export default {
           `${index_url}/api/asset?page=${page}&limit=${itemsPerPage}&type=${this.assetType}`
         )
         .then(resp => {
-          var data = resp.data.assets;
-          if (data.length > 0) {
-            if (setHeader) {
-              this.headers = Object.keys(JSON.parse(data[0].asset_details));
-              console.log(this.headers);
-
-              //   this.headers = headers.map(ele => {
-              //     return { text: ele, value: ele, sortable: false };
-              //   });
-              //   this.headers.push({
-              //     text: "Actions",
-              //     value: "action",
-              //     sortable: false
-              //   });
-            }
-            this.items = data;
-          } else {
-            this.headers = [];
-          }
-          // this.items = resp.data.;
-          // this.total = resp.data.total;
+          this.items = resp.data.assets;
+          this.total = resp.data.total;
         });
     },
     setAssetTypes() {

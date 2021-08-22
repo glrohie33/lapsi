@@ -15,7 +15,10 @@
                   <div class="card-header d-flex justify-content-between">
                     <h4 class="card-title">Staff Approval Status Chart</h4>
                   </div>
-                  <div style="overflow:hidden;">
+                  <div style="margin-top:15px;">
+                    <router-link :to="{path:'/admin'}" style="float:left;margin-left:10px;">
+                      <v-btn>Back To Dashboard</v-btn>
+                    </router-link>
                     <div class="form-group" style="float:right;margin-right:10px;width:100px;">
                       <select v-model="selectAgencyType" class="form-control select2-icons">
                         <option

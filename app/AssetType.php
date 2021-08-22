@@ -8,7 +8,7 @@ class AssetType extends Model
 {
     //
 
-    protected $fillable = ['name', 'insurance_classes'];
+    protected $fillable = ['name', 'insurance_classes', 'fields', 'unique_field'];
 
     public function assets()
     {
