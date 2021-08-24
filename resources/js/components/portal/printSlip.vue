@@ -1,11 +1,15 @@
 <template>
-  <div class="app-content contianer">
+  <div class="app-content container">
     <div class="content-overlay"></div>
     <div class="header-navbar-shadow"></div>
     <div class="content-wrapper">
       <div class="content-body">
         <!-- Column selectors with Export Options and print table -->
-        <section class="page-users-view users-view" id="usertable">
+        <section
+          class="page-users-view users-view"
+          id="usertable"
+          style="width:700px; margin:0px auto;"
+        >
           <div class="row">
             <!-- account start -->
             <div class="col-12">
@@ -22,7 +26,7 @@
                       <table>
                         <tr>
                           <td class="font-weight-bold">Surname</td>
-                          <td>{{user.surname}}</td>
+                          <td class>{{user.surname}}</td>
 
                           <td class="font-weight-bold">Firstname</td>
                           <td>{{user.firstname}}</td>
@@ -122,6 +126,24 @@
                       <td>{{item.rel}}</td>
                     </tr>
                     <tr>
+                      <td class="font-weight-bold">Date Of Birth</td>
+                      <td>{{item.dob}}</td>
+                      <td class="font-weight-bold">Indentification</td>
+                      <td>{{item.identification}}</td>
+                    </tr>
+                    <tr>
+                      <td class="font-weight-bold">Id Number</td>
+                      <td>{{item.id_num}}</td>
+                      <td class="font-weight-bold">Account Name</td>
+                      <td>{{item.acc_name}}</td>
+                    </tr>
+                    <tr>
+                      <td class="font-weight-bold">Account Number</td>
+                      <td>{{item.acc_number}}</td>
+                      <td class="font-weight-bold">Bank Name</td>
+                      <td>{{item.b_name}}</td>
+                    </tr>
+                    <tr>
                       <td class="font-weight-bold">Address</td>
                       <td>{{item.addr}}</td>
                     </tr>
@@ -130,11 +152,6 @@
               </div>
             </div>
 
-            <div class="col-12">
-              <a class="btn btn-primary mr-1 btn-sm" @click="print($event)">
-                <i class="feather icon-printer"></i> Print
-              </a>
-            </div>
             <!-- information start -->
             <!-- social links end -->
             <!-- permissions start -->
@@ -142,12 +159,20 @@
             <!-- permissions end -->
           </div>
         </section>
+        <div class="col-12">
+          <a class="btn btn-primary mr-1 btn-sm" @click="print($event)">
+            <i class="feather icon-printer"></i> Print
+          </a>
+        </div>
         <!-- Column selectors with Export Options and print table -->
       </div>
     </div>
   </div>
 </template>
 <script>
+import { jsPDF } from "jspdf";
+import * as html2canvas from "html2canvas";
+// import { html2canvas } from "html2canvas";
 export default {
   props: ["user"],
   data() {
@@ -156,23 +181,58 @@ export default {
     };
   },
   created() {
-    this.user = this.$store.state.user;
-    if (typeof this.user.beneficiaries != "object") {
-      this.user.beneficiaries = JSON.parse(this.user.beneficiaries);
-    }
+    this.user = this.user;
     this.getAgency();
   },
   methods: {
     getAgency() {
       const url = `${index_url}/api/useragencies/${this.user.agency_id}`;
-      var ag = axios.get(url).then(resp => {
-        this.user.agency = resp.data.agencies;
+      axios.get(url).then(resp => {
+        this.$set(this.user, "agency", resp.data.agencies);
       });
     },
     print(event) {
-      event.target.style.display = "none";
-      window.print();
-      event.target.style.display = "block";
+      //   var frame = document.createElement("iframe");
+      var source = document.querySelector("#usertable");
+      //   frame.contentDocument.write(source.innerHTML);
+      const doc = new jsPDF("p", "px", "a4");
+      var filename = `${this.user.firstname}${
+        this.user.oracle
+      }${new Date().getTime()}.pdf`;
+      var source = document.querySelector("#usertable");
+      var scale = (doc.internal.pageSize.width - 10 * 2) / source.scrollWidth;
+
+      doc.html(source, {
+        callback: doc => {
+          doc.save(filename);
+        },
+        filename: filename,
+        html2canvas: {
+          scale: scale // default is window.devicePixelRatio
+        },
+        fontFaces: [
+          {
+            family: "calibri",
+            weight: "bold"
+          }
+        ],
+        x: 10,
+        y: 10
+      });
+      //   doc.setFont("calibri");
+      //   doc.setFontType("normal");
+      //   doc.setFontSize(12);
+      //   var margins = {
+      //     top: 10,
+      //     bottom: 60,
+      //     left: 10,
+      //     width: 1200
+      //   };
+      //   doc.fromHTML(source, margins.left, margins.top, {
+      //     width: margins.width
+      //   });
+
+      //   doc.save(filename);
     }
   }
 };
@@ -180,5 +240,20 @@ export default {
 <style scoped>
 table {
   width: 100%;
+}
+
+#usertable .card {
+  margin-bottom: 0px !important;
+  height: 330px;
+}
+
+#usertable .col-12 {
+  padding: 2px !important;
+  margin:10px !important;
+}
+
+#usertable td {
+  font-weight: 500;
+  padding-bottom: 0.18rem;
 }
 </style>

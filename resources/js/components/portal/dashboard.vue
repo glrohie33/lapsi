@@ -299,13 +299,16 @@ export default {
     };
   },
   created() {
+    console.log(this.user);
     this.setActions();
     this.user = this.$store.state.user;
-    if (typeof this.user.beneficiaries != "object") {
-      this.bene = JSON.parse(this.user.beneficiaries);
-    } else {
-      this.bene = this.user.beneficiaries;
-    }
+    this.bene = this.user.beneficiaries;
+    // if (typeof this.user.beneficiaries != "object") {
+    //   console.log(this.user.beneficiaries);
+    //   this.bene = JSON.parse(this.user.beneficiaries);
+    // } else {
+    //   this.bene = this.user.beneficiaries;
+    // }
     var obj = this;
     var i = 0;
 

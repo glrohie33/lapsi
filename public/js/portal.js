@@ -514,19 +514,16 @@ __webpack_require__.r(__webpack_exports__);
   },
   data: function data() {
     return {
-      user: {},
       menuModel: true,
       variant: true
     };
   },
-  created: function created() {
-    this.user = this.$store.state.user;
-
-    if (this.user.oracle == null || this.user.oracle.length == 0) {
-      this.$router.push({
-        path: "/admin"
-      });
+  computed: {
+    user: function user() {
+      return this.$store.state.user;
     }
+  },
+  created: function created() {// this.user = this.$store.state.user;
   },
   methods: {
     setMenu: function setMenu() {

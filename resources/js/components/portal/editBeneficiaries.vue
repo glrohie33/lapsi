@@ -1,6 +1,6 @@
 <template>
   <div class="body">
-    <div class="app-content contianer">
+    <div class="app-content container">
       <div class="content-overlay"></div>
       <div class="header-navbar-shadow"></div>
       <div class="content-wrapper">
@@ -226,7 +226,6 @@
                           <div class="col-md-12">
                             <div class="col-md-12" style="text-align: center;">
                               <button
-                                type="submit"
                                 @click="saveData()"
                                 class="btn btn-primary btn-inline"
                               >Add Beneficiaries</button>

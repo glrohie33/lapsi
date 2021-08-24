@@ -50,6 +50,8 @@
             <app></app>
         </div>
     </body>
+    {{-- <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.3.1/jspdf.umd.min.js"></script> --}}
+    {{-- <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/0.4.1/html2canvas.min.js"></script> --}}
     <script src="{{ asset('public/js/app.js') }}" defer></script>
 
     <script src="{{ asset('public/app-assets/vendors/js/vendors.min.js') }}"></script>

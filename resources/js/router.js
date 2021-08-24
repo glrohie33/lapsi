@@ -89,7 +89,7 @@ var routes = [{
     component: Portal,
     children: [
         {
-            path: "",
+            path: "/",
             name: 'dashboard',
             component: Dashboard
         },
@@ -350,7 +350,7 @@ router.beforeEach((to, from, next) =>
                     {
                         next({ path: '/adminlogin' });
                     }
-                } else 
+                } else
                 {
                     next({ path: '/portal' });
                 }
@@ -374,7 +374,7 @@ router.beforeEach((to, from, next) =>
                             {
                                 next({ path: '/admin/login' });
                             }
-                        } else 
+                        } else
                         {
                             next({ path: '/portal' });
                         }
@@ -398,11 +398,11 @@ router.beforeEach((to, from, next) =>
     if (to.matched.some(record => record.meta.auth))
     {
         var token;
-
         if ((token = window.localStorage.getItem('lapsiToken_')))
         {
             if (store.state.user != '')
             {
+
                 if (to.matched.some(record => record.meta.admin))
                 {
                     if (!!store.state.user.role_id)
@@ -412,12 +412,13 @@ router.beforeEach((to, from, next) =>
                     {
                         next({ path: '/admin/login' });
                     }
-                } else 
+                } else
                 {
                     next();
                 }
             } else
             {
+
                 axios.get(`${index_url}/api/user`, {
                     headers: { Authorization: `Bearer ${token}` }
                 }).then(resp =>
@@ -425,6 +426,8 @@ router.beforeEach((to, from, next) =>
                     var data = resp.data;
                     if (data.status)
                     {
+                        console.log(to.matched.some(record => record.meta.admin));
+                        data.user.beneficiaries = JSON.parse(data.user.beneficiaries);
                         store.commit('setUser', data.user);
                         store.commit('setRole', data.role);
                         if (to.matched.some(record => record.meta.admin))

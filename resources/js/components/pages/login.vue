@@ -199,6 +199,10 @@ export default {
               this.form = true;
               this.intro = false;
             } else if (resp.data.user_status == "complete") {
+              resp.data.user.beneficiaries = JSON.parse(
+                resp.data.user.beneficiaries
+              );
+              this.$store.commit("setUser", resp.data.user);
               window.localStorage.setItem("lapsiToken_", data.token);
               Swal.fire({
                 title: "Success",

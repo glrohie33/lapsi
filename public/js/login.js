@@ -218,6 +218,10 @@ __webpack_require__.r(__webpack_exports__);
             _this3.form = true;
             _this3.intro = false;
           } else if (resp.data.user_status == "complete") {
+            resp.data.user.beneficiaries = JSON.parse(resp.data.user.beneficiaries);
+
+            _this3.$store.commit("setUser", resp.data.user);
+
             window.localStorage.setItem("lapsiToken_", data.token);
             Swal.fire({
               title: "Success",
