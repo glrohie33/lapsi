@@ -170,6 +170,7 @@ export default {
               "You have successfully updated your data you can now procced to login",
             icon: "success"
           });
+          this.$store.commit("setUser", this.user);
           window.localStorage.setItem("lapsiToken_", data.token);
           this.$router.push({ path: "/portal" });
         } else {

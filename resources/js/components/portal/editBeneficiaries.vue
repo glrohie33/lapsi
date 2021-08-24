@@ -180,7 +180,7 @@
                               <div class="form-group col-md-12">
                                 <label>Other Details</label>
                                 <textarea
-                                  v-model="user.beneficiaries[index].addr"
+                                  v-model="user.beneficiaries[index].other_details"
                                   class="form-control"
                                   placeholder="Other details for beneficiary *"
                                 ></textarea>
@@ -292,7 +292,8 @@ export default {
         acc_name: "",
         b_name: "",
         dob: "",
-        files: []
+        files: [],
+        other_details: ""
       });
     },
     removeBene: function(index) {

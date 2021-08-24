@@ -185,6 +185,9 @@ __webpack_require__.r(__webpack_exports__);
             text: "You have successfully updated your data you can now procced to login",
             icon: "success"
           });
+
+          _this2.$store.commit("setUser", _this2.user);
+
           window.localStorage.setItem("lapsiToken_", data.token);
 
           _this2.$router.push({
@@ -687,7 +690,8 @@ __webpack_require__.r(__webpack_exports__);
         acc_name: "",
         b_name: "",
         dob: "",
-        files: []
+        files: [],
+        other_details: ""
       });
     },
     removeBene: function removeBene(index) {
@@ -2575,8 +2579,11 @@ var render = function() {
                                   {
                                     name: "model",
                                     rawName: "v-model",
-                                    value: _vm.user.beneficiaries[index].addr,
-                                    expression: "user.beneficiaries[index].addr"
+                                    value:
+                                      _vm.user.beneficiaries[index]
+                                        .other_details,
+                                    expression:
+                                      "user.beneficiaries[index].other_details"
                                   }
                                 ],
                                 staticClass: "form-control",
@@ -2584,7 +2591,8 @@ var render = function() {
                                   placeholder: "Other details for beneficiary *"
                                 },
                                 domProps: {
-                                  value: _vm.user.beneficiaries[index].addr
+                                  value:
+                                    _vm.user.beneficiaries[index].other_details
                                 },
                                 on: {
                                   input: function($event) {
@@ -2593,7 +2601,7 @@ var render = function() {
                                     }
                                     _vm.$set(
                                       _vm.user.beneficiaries[index],
-                                      "addr",
+                                      "other_details",
                                       $event.target.value
                                     )
                                   }

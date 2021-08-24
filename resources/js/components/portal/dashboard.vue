@@ -44,7 +44,7 @@
                         <i class="feather icon-users text-primary font-medium-5"></i>
                       </div>
                     </div>
-                    <h2 class="text-bold-700 mt-1 mb-25">{{bene.length}}</h2>
+                    <h2 class="text-bold-700 mt-1 mb-25">{{user.beneficiaries.length}}</h2>
                     <p class="mb-0">No Of Beneficiaries</p>
                   </div>
                   <div class="card-content">
@@ -74,7 +74,7 @@
                           class="col-lg-4 col-12 d-flex justify-content-between flex-column order-lg-1 order-2 mt-lg-0 mt-2"
                         >
                           <div>
-                            <h2 class="text-bold-700 mb-25">{{bene.length}}</h2>
+                            <h2 class="text-bold-700 mb-25">{{user.beneficiaries.length}}</h2>
                             <p class="text-bold-500 mb-75">Number Beneficiaries</p>
                             <h5 class="font-medium-2">
                               <span class="text-success">100%</span>
@@ -101,7 +101,7 @@
                       </div>
                       <hr />
                       <div class="row avg-sessions pt-50">
-                        <div class="col-6" v-for="(b,index) in bene" :key="index">
+                        <div class="col-6" v-for="(b,index) in user.beneficiaries" :key="index">
                           <p class="mb-0">{{ b.name }}: {{b.perc}}%</p>
                           <div class="progress progress-bar-primary mt-25">
                             <div
@@ -298,35 +298,20 @@ export default {
       }
     };
   },
+  watch: {
+    user: {
+      handler() {
+        console.log(this.user);
+      }
+    }
+  },
+  computed: {},
   created() {
-    console.log(this.user);
-    this.setActions();
-    this.user = this.$store.state.user;
-    this.bene = this.user.beneficiaries;
-    // if (typeof this.user.beneficiaries != "object") {
-    //   console.log(this.user.beneficiaries);
-    //   this.bene = JSON.parse(this.user.beneficiaries);
-    // } else {
-    //   this.bene = this.user.beneficiaries;
-    // }
-    var obj = this;
-    var i = 0;
-
-    this.beneCharts.series = this.bene.map(x => Number(x.perc));
-    this.beneCharts.options.labels = this.bene.map(x => x.name);
-    var i = 0;
-    // var length = this.bene.length;
-    // while (i < length) {
-    //   var color = Math.floor(Math.random() * 16777215).toString(16);
-    //   var gradcolor = Math.floor(Math.random() * 16777215).toString(16);
-    //   this.$set(this.beneCharts.options.colors, i, `#${color}`);
-    //   this.$set(
-    //     this.beneCharts.options.fill.gradient.gradientToColors,
-    //     i,
-    //     `#${gradcolor}`
-    //   );
-    //   i++;
-    // }
+    // this.user = this.$store.state.user;
+    if (!!this.user) {
+      this.beneCharts.series = this.user.beneficiaries.map(x => Number(x.perc));
+      this.beneCharts.options.labels = this.user.beneficiaries.map(x => x.name);
+    }
   },
   methods: {
     setActions() {
