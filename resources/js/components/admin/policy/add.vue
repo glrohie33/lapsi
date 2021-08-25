@@ -48,11 +48,13 @@
                           <div class="col-md-6 form-group">
                             <label>Policy type</label>
                             <select
+                                @change="setPolicy()"
                               v-model="policy.insurance_class"
                               class="form-control select2-icons"
                             >
                               <option value="0">Select Policy Type</option>
                               <option
+
                                 v-for="(x,ind) in insuranceclass"
                                 :key="ind"
                                 :value="x.id"
@@ -84,7 +86,13 @@
                           </div>
                           <div class="col-md-6 form-group">
                             <label>Premium</label>
-                            <input type="number" v-model="policy.premium" class="form-control" />
+
+                            <input
+                              @keyup="setPremiumPerc()"
+                              type="number"
+                              v-model="policy.premium"
+                              class="form-control"
+                            />
                           </div>
                           <div class="col-md-6 form-group">
                             <label>Starting Date</label>
@@ -197,9 +205,19 @@ export default {
           obj.policy.sum_insured * (obj.policy.premium_perc / 100);
       }, 1000);
     },
+    setPremiumPerc() {
+      if (!!this.interval) {
+        var interval = this.interval;
+        clearTimeout(interval);
+      }
+      var obj = this;
+      this.interval = setTimeout(() => {
+        obj.policy.premium_perc =
+          (obj.policy.premium * 100) / obj.policy.sum_insured;
+      }, 1000);
+    },
     setPolicy() {
       var ins_id = this.policy.insurance_class;
-      this.setPolicyNumber(ins_id);
       if (ins_id > 0) {
         var selected = this.insuranceclass.find(ins => ins.id == ins_id);
         var underwriters = JSON.parse(selected.underwriters_details);

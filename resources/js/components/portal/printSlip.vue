@@ -156,18 +156,20 @@
               <div class="card">
                 <div class="card-body">
                   <div
-                    :style="{textAlign:'center',width:'300px',margin:'0px auto', position:'relative'}"
+                    :style="{textAlign:'center',width:'300px',margin:'0px auto', position:'relative',height:'177px'}"
                   >
-                  <!-- <img :src="stamp" alt="" id="stamp"> -->
-                    <img
-                      :src="`${index_url}/public/images/director.jpg`"
-                      alt
-                      style="width:160px;height:65px;object-fit:contain;"
-                    />
-                    <hr id="underline" />
-                    <h5 style="font-size:90%;">
-                      <i>Director Of Insurance</i>
-                    </h5>
+                    <img :src="stamp" alt id="stamp" />
+                    <div style="width:100%;position:absolute;" id="signature">
+                      <img
+                        :src="`${index_url}/public/images/director.jpg`"
+                        alt
+                        style="width:160px;height:65px;object-fit:contain;"
+                      />
+                      <hr id="underline" />
+                      <h5 style="font-size:90%;">
+                        <i>Director Of Insurance</i>
+                      </h5>
+                    </div>
                   </div>
                 </div>
               </div>
@@ -202,9 +204,16 @@ export default {
       errors: []
     };
   },
+  watch: {
+    user: {
+      handler() {
+        this.getAgency();
+      }
+    }
+  },
   computed: {
     stamp() {
-      return `${index_url}/public/images/stamp.jpg`;
+      return `${index_url}/public/images/logo.png`;
     }
   },
   created() {
@@ -213,10 +222,12 @@ export default {
   },
   methods: {
     getAgency() {
-      const url = `${index_url}/api/useragencies/${this.user.agency_id}`;
-      axios.get(url).then(resp => {
-        this.$set(this.user, "agency", resp.data.agencies);
-      });
+      if (!!this.user) {
+        const url = `${index_url}/api/useragencies/${this.user.agency_id}`;
+        axios.get(url).then(resp => {
+          this.$set(this.user, "agency", resp.data.agencies);
+        });
+      }
     },
     print(event) {
       //   var frame = document.createElement("iframe");
@@ -279,8 +290,8 @@ table {
   margin: 10px !important;
 }
 
-#stamp{
-    position:absolute;
+#stamp {
+  position: absolute;
 }
 #usertable td {
   font-weight: 500;
@@ -292,5 +303,20 @@ table {
   margin-bottom: 0.3rem;
   border: 0;
   border-top: 1px solid rgba(34, 41, 47, 0.9);
+}
+
+#signature {
+  width: 100%;
+  position: absolute;
+  bottom: 0px;
+}
+
+#stamp {
+  position: absolute;
+  left: 0px;
+  height: 125px;
+  width: 100%;
+  object-fit: contain;
+  opacity: 0.8;
 }
 </style>

@@ -302,11 +302,11 @@ export default {
     };
   },
   watch: {
-    user: {
+    $props: {
       handler() {
-          console.log('here');
+        console.log("here");
         if (!!this.user) {
-            console.log('here');
+          console.log("here");
           this.beneCharts.series = this.user.beneficiaries.map(x =>
             Number(x.perc)
           );
@@ -314,16 +314,17 @@ export default {
             x => x.name
           );
         }
-      }
+      },
+      deep: true
     }
   },
   computed: {},
   created() {
     // this.user = this.$store.state.user;
-    // if (!!this.user) {
-    //   this.beneCharts.series = this.user.beneficiaries.map(x => Number(x.perc));
-    //   this.beneCharts.options.labels = this.user.beneficiaries.map(x => x.name);
-    // }
+    if (!!this.user) {
+      this.beneCharts.series = this.user.beneficiaries.map(x => Number(x.perc));
+      this.beneCharts.options.labels = this.user.beneficiaries.map(x => x.name);
+    }
   },
   methods: {
     setActions() {

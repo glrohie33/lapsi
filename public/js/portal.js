@@ -523,8 +523,7 @@ __webpack_require__.r(__webpack_exports__);
       return this.$store.state.user;
     }
   },
-  created: function created() {// this.user = this.$store.state.user;
-  },
+  created: function created() {},
   methods: {
     setMenu: function setMenu() {
       console.log(this.menuModel);

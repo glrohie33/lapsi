@@ -374,7 +374,7 @@ export default {
       const url = `${index_url}/api/users`;
       axios.get(url, formHeader()).then(resp => {
         this.setAnalytics(resp.data.users);
-      });
+    });
     },
     setAnalytics(users) {
       var obj = this;

@@ -29,7 +29,6 @@ export default {
     }
   },
   created() {
-    // this.user = this.$store.state.user;
   },
   methods: {
     setMenu() {
