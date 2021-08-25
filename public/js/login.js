@@ -1233,7 +1233,9 @@ var staticRenderFns = [
         _vm._v(" "),
         _c("h4", [_vm._v("Lagos State Ministry Of Finance")]),
         _vm._v(" "),
-        _c("h5", [_vm._v("Welcome to Lagos State Service Insurance Portal")])
+        _c("h5", [
+          _vm._v("Welcome to Lagos State Public Service Insurance Portal")
+        ])
       ])
     ])
   }
