@@ -51,6 +51,8 @@ Route::get('underwriterchildren', 'UnderwriterController@underwriterChildren');
 Route::post('user/addrole/{id}', 'UserController@addrole');
 Route::get('policynumber', 'PolicyController@newPolicyNumber');
 Route::get('assettypebyclass', 'AssetTypeController@typeByClass');
+Route::post('claims/verify', 'ClaimController@verifyClaim');
+
 
 
 Route::post('login', 'LoginController@login');

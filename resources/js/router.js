@@ -212,7 +212,7 @@ var routes = [{
             name: 'addunderwriterrank',
             component: AddUnderwriterRank
         }, {
-            path: "underwriter",
+            path: "underwriters",
             name: 'underwriter',
             component: Underwriter
         }, {
@@ -260,7 +260,7 @@ var routes = [{
             name: 'addassettype',
             component: AddAssetType
         }, {
-            path: "policy",
+            path: "policies",
             name: 'policy',
             component: Policy
         }, {
@@ -300,7 +300,7 @@ var routes = [{
             name: 'All claims',
             component: Claim
         }, {
-            path: "claim/:id",
+        path: "claim/:id",
             name: 'editclaim',
             component: EditClaim
         }, {

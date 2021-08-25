@@ -25,6 +25,7 @@
                           v-for="(type,index) in agencyTypes"
                           :key="index"
                           :value="type.id"
+                          style="text-transform:Capitalize;"
                         >{{type.name}}</option>
                       </select>
                     </div>

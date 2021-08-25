@@ -56,7 +56,6 @@
                                 placeholder="policy number"
                                 name="name"
                                 required
-                                readonly
                               />
                               <i
                                 class="text-danger"
@@ -306,7 +305,7 @@ export default {
         if (resp.data.status) {
           Swal.fire({
             title: "Business Added",
-            text: "You have successfully added a new role",
+            text: "You have successfully added a new Business",
             icon: "success"
           });
           button.removeAttribute("disabled");

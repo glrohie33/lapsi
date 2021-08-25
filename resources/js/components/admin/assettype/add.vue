@@ -7,7 +7,7 @@
         <div class="content-header-left col-md-9 col-12 mb-2">
           <div class="row breadcrumbs-top">
             <div class="col-12">
-              <h2 class="content-header-title float-left mb-0">Assettype type</h2>
+              <h2 class="content-header-title float-left mb-0">Add Asset Type</h2>
             </div>
           </div>
         </div>
@@ -158,7 +158,7 @@ export default {
         if (resp.data.status) {
           Swal.fire({
             title: "Assettype Added",
-            text: "You have successfully added a asset type",
+        text: "You have successfully added an asset type",
             icon: "success"
           });
           button.removeAttribute("disabled");

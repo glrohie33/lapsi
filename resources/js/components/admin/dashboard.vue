@@ -30,7 +30,10 @@
                         </div>
                       </div>
                       <div class="text-center">
-                        <h1 class="mb-2 text-white">Welcome {{ user.title }} {{ user.firstname }},</h1>
+                        <h1
+                          class="mb-2 text-white"
+                          style="text-transform:capitalize;"
+                        >Welcome {{ user.title }} {{ user.firstname }},</h1>
                       </div>
                     </div>
                   </div>
@@ -71,7 +74,7 @@
                           </div>
                         </div>
                         <h2 class="text-bold-700">{{allUsers}}</h2>
-                        <p class="mb-0 line-ellipsis">No of Staffs</p>
+                        <p class="mb-0 line-ellipsis">No of Staff</p>
                       </div>
                     </div>
                   </router-link>
@@ -88,7 +91,7 @@
                           </div>
                         </div>
                         <h2 class="text-bold-700">{{appUsers}}</h2>
-                        <p class="mb-0 line-ellipsis">Approved Staffs</p>
+                        <p class="mb-0 line-ellipsis">Approved Staff</p>
                       </div>
                     </div>
                   </router-link>
@@ -105,7 +108,7 @@
                           </div>
                         </div>
                         <h2 class="text-bold-700">{{unAppUsers}}</h2>
-                        <p class="mb-0 line-ellipsis">Unapproved Staffs</p>
+                        <p class="mb-0 line-ellipsis">Unapproved Staff</p>
                       </div>
                     </div>
                   </router-link>
@@ -298,7 +301,7 @@ export default {
               }
             }
           },
-          labels: ["Approved Staffs", "Unapproved Staffs"]
+          labels: ["Approved Staff", "Unapproved Staff"]
         }
       },
       bene: {
@@ -398,5 +401,8 @@ export default {
 };
 </script>
 <style scoped>
+#dashboard-analytics a{
+    color:#444 !important;
+}
 /* @import url("../../assets/app-assets/css/pages/card-analytics.min.css"); */
 </style>

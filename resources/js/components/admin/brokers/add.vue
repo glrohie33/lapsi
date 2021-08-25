@@ -53,7 +53,7 @@
                                 id="first-name-vertical"
                                 class="form-control"
                                 v-model="broker.rc_number"
-                                placeholder="registered name"
+                                placeholder="Rc Number"
                                 name="registered_name"
                                 required
                               />
@@ -73,7 +73,7 @@
                                 class="form-control"
                                 v-model="broker.ceo"
                                 placeholder="CEO"
-                                name="registered_name"
+                                name="CEO"
                                 required
                               />
                               <i

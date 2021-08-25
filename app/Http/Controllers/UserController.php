@@ -47,7 +47,7 @@ class UserController extends Controller
             $users = $users->where('agency_id', 'like', "%$id%");
         }
 
-        $total = $users->where('role_id', null)->count();
+        $total = $users->where('role_id', '=', "0")->count();
 
         if (!empty($request->page) && !empty($request->limit)) {
 
@@ -58,7 +58,7 @@ class UserController extends Controller
             $order = ($request->desc) ? 'desc' : 'asc';
             $users = $users->orderBy($request->sort, $order);
         }
-        $users =   $users->where('role_id', null)->get();
+        $users =   $users->where('role_id', '=', 0)->get();
 
 
         return response()->json(compact('users', 'total'));
@@ -269,7 +269,8 @@ class UserController extends Controller
                 }
                 if ($status) {
                     $user = User::find($id);
-                    $input['role_id'] = Null;
+                    $beneficiaries = json_decode($user->beneficiaries, true);
+                    $input['status'] = 0;
                     $user->update($input);
                     return response()->json(compact('status', 'user'));
                 } else {

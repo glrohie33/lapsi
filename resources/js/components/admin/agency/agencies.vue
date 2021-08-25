@@ -49,7 +49,7 @@
                               <select v-model="filter" class="form-control select2-icons">
                                 <option value data-icon="fa fa-male">All Agencies</option>
                                 <option value="allocated">Allocated Agencies</option>
-                                <option value="unallocated">Allocated Agencies</option>
+                                <option value="unallocated">Unallocated Agencies</option>
                               </select>
                             </div>
                           </div>
@@ -324,7 +324,8 @@ export default {
           this.allocateButton = false;
         }
       }
-    }
+    },
+    filter() {}
   },
   created() {
     this.getBrokers();

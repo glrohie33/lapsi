@@ -349,11 +349,11 @@ export default {
         if (resp.data.status) {
           Swal.fire({
             title: "Claim Added",
-            text: "You have successfully added a new role",
+            text: "You have successfully added a new claim",
             icon: "success"
           });
           button.removeAttribute("disabled");
-          this.$router.push({ path: "/admin/claim/" });
+          this.$router.push({ path: "/admin/claims/" });
         } else {
           this.errors = resp.data.errors;
           button.removeAttribute("disabled");

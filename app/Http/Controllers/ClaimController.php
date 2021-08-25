@@ -34,6 +34,10 @@ class ClaimController extends Controller
             $claims = $claims->orderBy($request->sort, $order);
         }
 
+        if ($request->filter > -1) {
+            $claims = $claims->where('claims.status', $request->filter);
+        }
+
         $claims = $claims->select('claims.*', 'policies.id as policy', 'agency.name as agency_name', 'insurance_classes.name as claim_class_name', 'insurance_types.name as claim_type_name', 'asset_types.name as asset_type_name')->groupBy('claims.id', 'policies.id')->get();
         $total = Claim::count();
         return response()->json(compact('claims', 'total'));
@@ -89,9 +93,12 @@ class ClaimController extends Controller
      * @param  \App\Claim  $claim
      * @return \Illuminate\Http\Response
      */
-    public function edit(Claim $claim)
+    public function edit($id)
     {
         //
+        $status = true;
+        $claim =  Claim::find($id);
+        return Response()->json(compact('status', 'claim'));
     }
 
     /**
@@ -101,9 +108,34 @@ class ClaimController extends Controller
      * @param  \App\Claim  $claim
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Claim $claim)
+    public function update(Request $request, $id)
     {
         //
+        $input = $request->all();
+        $rules = ['agency' => 'Required', 'claimant_name' => 'required', 'claimant_phone' => 'Required', 'claimant_email' => 'Required', 'claim_type' => 'Required', 'claim_class' => 'Required', 'claim_description' => 'Required',  'contact_name' => 'Required', 'contact_phone' => 'Required', 'files' => 'Required'];
+        $validator = Validator::make($input, $rules);
+        if ($validator->fails()) {
+            $status = false;
+            $errors = $validator->errors();
+        } else {
+            $claim = Claim::find($id);
+            $claim = $claim->update($input);
+            $status = true;
+        }
+        return response()->json(compact('errors', 'status'));
+    }
+
+    public function verifyClaim(Request $request)
+    {
+        $status = false;
+        if (!empty($request->id)) {
+            $claim = Claim::find($request->id);
+            if ($claim) {
+                $claim->update($request->all());
+                $status = true;
+            }
+        }
+        return response()->json(compact('status'));
     }
 
     /**

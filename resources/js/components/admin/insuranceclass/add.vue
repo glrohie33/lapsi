@@ -27,7 +27,7 @@
             <div class="col-12">
               <div class="card">
                 <div class="card-header">
-                  <h4 class="card-title">Add Insurance</h4>
+                  <h4 class="card-title">Add Insurance Class</h4>
                 </div>
                 <div class="card-content">
                   <div class="card-body">
@@ -55,7 +55,7 @@
                           </div>
                           <div class="col-md-8">
                             <div class="form-group">
-                              <label for="first-name-vertical">Insurance Types</label>
+                              <label for="first-name-vertical">Insurance</label>
                               <select
                                 type="text"
                                 id="first-name-vertical"
@@ -148,8 +148,8 @@ export default {
       axios.post(`${index_url}/api/insuranceclass`, data).then(resp => {
         if (resp.data.status) {
           Swal.fire({
-            title: "underwriter Insurance Added",
-            text: "You have successfully added a insurance",
+            title: "Insurance Class Added",
+            text: "You have successfully added a new Insurance Class",
             icon: "success"
           });
           button.removeAttribute("disabled");

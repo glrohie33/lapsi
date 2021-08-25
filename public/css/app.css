@@ -41,8 +41,17 @@ body {
   padding: unset;
 }
 
-.v-application a {
+.v-application .v-list-item--active {
   color: #565656 !important;
+}
+
+.btn-md {
+  padding: 10px 15px;
+  border-radius: 4px;
+}
+
+.btn-primary {
+  color: #fff !important;
 }
 
 .v-list .v-list-item--active .v-icon {
@@ -357,10 +366,6 @@ ol li:nth-child(12) {
 
 .v-navigation-drawer {
   z-index: 999999 !important;
-}
-
-.btn-primary a {
-  color: #fff !important;
 }
 
 .v-navigation-drawer__content {

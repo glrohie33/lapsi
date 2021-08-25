@@ -152,6 +152,27 @@
               </div>
             </div>
 
+            <div class="col-12" v-if="user.status == 1">
+              <div class="card">
+                <div class="card-body">
+                  <div
+                    :style="{textAlign:'center',width:'300px',margin:'0px auto', position:'relative'}"
+                  >
+                  <!-- <img :src="stamp" alt="" id="stamp"> -->
+                    <img
+                      :src="`${index_url}/public/images/director.jpg`"
+                      alt
+                      style="width:160px;height:65px;object-fit:contain;"
+                    />
+                    <hr id="underline" />
+                    <h5 style="font-size:90%;">
+                      <i>Director Of Insurance</i>
+                    </h5>
+                  </div>
+                </div>
+              </div>
+            </div>
+
             <!-- information start -->
             <!-- social links end -->
             <!-- permissions start -->
@@ -159,7 +180,7 @@
             <!-- permissions end -->
           </div>
         </section>
-        <div class="col-12">
+        <div class="col-12" v-if="user.status == 1">
           <a class="btn btn-primary mr-1 btn-sm" @click="print($event)">
             <i class="feather icon-printer"></i> Print
           </a>
@@ -177,8 +198,14 @@ export default {
   props: ["user"],
   data() {
     return {
+      index_url: index_url,
       errors: []
     };
+  },
+  computed: {
+    stamp() {
+      return `${index_url}/public/images/stamp.jpg`;
+    }
   },
   created() {
     this.user = this.user;
@@ -249,11 +276,21 @@ table {
 
 #usertable .col-12 {
   padding: 2px !important;
-  margin:10px !important;
+  margin: 10px !important;
 }
 
+#stamp{
+    position:absolute;
+}
 #usertable td {
   font-weight: 500;
   padding-bottom: 0.18rem;
+}
+
+#underline {
+  margin-top: 0.3rem;
+  margin-bottom: 0.3rem;
+  border: 0;
+  border-top: 1px solid rgba(34, 41, 47, 0.9);
 }
 </style>

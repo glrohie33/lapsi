@@ -58,12 +58,12 @@
                                 <h5>Beneficiary {{index + 1}}</h5>
                               </div>
                               <div class="form-group col-md-6">
-                                <label>Name Of Beneficiaries</label>
+                                <label>Name Of Beneficiary</label>
                                 <input
                                   type="text"
                                   v-model="user.beneficiaries[index].name"
                                   class="form-control"
-                                  placeholder="Name Of Beneficiaries *"
+                                  placeholder="Name Of Beneficiary *"
                                 />
                                 <p class="text-danger text-center">{{errors[`bene${index}name`]}}</p>
                               </div>
@@ -88,12 +88,12 @@
                                 <p class="text-danger text-center">{{errors[`bene${index}perc`]}}</p>
                               </div>
                               <div class="form-group col-md-6">
-                                <label>Relationship with Life Assured</label>
+                                <label>Relationship with Beneficiary</label>
                                 <input
                                   type="text"
                                   v-model="user.beneficiaries[index].rel"
                                   class="form-control"
-                                  placeholder="Relationship with life assured *"
+                                  placeholder="Relationship with Beneficiary *"
                                 />
                                 <p class="text-danger text-center">{{errors[`bene${index}rel`]}}</p>
                               </div>
@@ -211,8 +211,8 @@
                                 </div>
                               </div>
                               <div class="col-md-12">
-                                <button class="btn-danger btn-sm" @click="showBox(index)">
-                                  <i class="feather">add files</i>
+                                <button class="btn-danger btn-md" @click="showBox(index)">
+                                  <i class="feather">Add Files</i>
                                 </button>
                               </div>
                             </div>

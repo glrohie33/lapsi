@@ -53,8 +53,7 @@
                                 id="first-name-vertical"
                                 class="form-control"
                                 v-model="underwriter.rc_number"
-                                placeholder="registered name"
-                                name="registered_name"
+                                placeholder="Rc Number"
                                 required
                               />
                               <i

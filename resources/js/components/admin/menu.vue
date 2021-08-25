@@ -50,7 +50,7 @@ export default {
           active: true
         },
         {
-          title: "Staffs",
+          title: "Staff",
           items: [
             {
               title: "List",
@@ -109,7 +109,7 @@ export default {
           items: [
             {
               title: "List",
-              path: { path: "/admin/staffs" }
+              path: { path: "/admin/staff" }
             },
             {
               title: "Add New",
@@ -123,7 +123,7 @@ export default {
           items: [
             {
               title: "List",
-              path: { path: "/admin/underwriter" }
+              path: { path: "/admin/underwriters" }
             },
             {
               title: "Add New",
@@ -179,7 +179,7 @@ export default {
           items: [
             {
               title: "List",
-              path: { path: "/admin/policy" }
+              path: { path: "/admin/policies" }
             },
             {
               title: "Add New",

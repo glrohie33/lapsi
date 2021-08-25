@@ -37,7 +37,6 @@
                                 placeholder="policy number"
                                 name="name"
                                 required
-                                readonly
                               />
                               <i
                                 class="text-danger"
@@ -51,7 +50,6 @@
                             <select
                               v-model="policy.insurance_class"
                               class="form-control select2-icons"
-                              @change="setPolicy"
                             >
                               <option value="0">Select Policy Type</option>
                               <option
@@ -68,7 +66,21 @@
                           </div>
                           <div class="col-md-6 form-group">
                             <label>Sum Insured</label>
-                            <input type="number" v-model="policy.sum_insured" class="form-control" />
+                            <input
+                              type="number"
+                              @keyup="setPremium()"
+                              v-model="policy.sum_insured"
+                              class="form-control"
+                            />
+                          </div>
+                          <div class="col-md-6 form-group">
+                            <label>Premium %</label>
+                            <input
+                              type="number"
+                              v-model="policy.premium_perc"
+                              @keyup="setPremium()"
+                              class="form-control"
+                            />
                           </div>
                           <div class="col-md-6 form-group">
                             <label>Premium</label>
@@ -121,13 +133,15 @@ export default {
         policy_number: "",
         sum_insured: 0,
         premium: 0,
+        premium_perc: "",
         insurance_class: 0,
         underwriters: []
       },
       leadUnderwriter: "",
       insuranceclass: [],
       parents: [],
-      errors: []
+      errors: [],
+      interval: ""
     };
   },
   watch: {},
@@ -154,7 +168,7 @@ export default {
         if (resp.data.status) {
           Swal.fire({
             title: "Policy Added",
-            text: "You have successfully added a new role",
+            text: "You have successfully added a new policy",
             icon: "success"
           });
           button.removeAttribute("disabled");
@@ -171,6 +185,17 @@ export default {
         .then(resp => {
           this.policy.policy_number = resp.data.policy_number;
         });
+    },
+    setPremium() {
+      if (!!this.interval) {
+        var interval = this.interval;
+        clearTimeout(interval);
+      }
+      var obj = this;
+      this.interval = setTimeout(() => {
+        obj.policy.premium =
+          obj.policy.sum_insured * (obj.policy.premium_perc / 100);
+      }, 1000);
     },
     setPolicy() {
       var ins_id = this.policy.insurance_class;

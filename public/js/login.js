@@ -661,6 +661,15 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
   components: {
@@ -1224,7 +1233,7 @@ var staticRenderFns = [
         _vm._v(" "),
         _c("h4", [_vm._v("Lagos State Ministry Of Finance")]),
         _vm._v(" "),
-        _c("h5", [_vm._v("Welcome to Lagos State Service insurance Portal")])
+        _c("h5", [_vm._v("Welcome to Lagos State Service Insurance Portal")])
       ])
     ])
   }
@@ -1287,6 +1296,7 @@ var render = function() {
                               ],
                               staticClass: "form-control",
                               staticStyle: { width: "100px" },
+                              attrs: { readonly: "" },
                               on: {
                                 change: function($event) {
                                   var $$selectedVal = Array.prototype.filter
@@ -1373,7 +1383,7 @@ var render = function() {
                         "div",
                         { staticClass: "col-md-6 form-group" },
                         [
-                          _c("label", [_vm._v("Firstname")]),
+                          _c("label", [_vm._v("First Name")]),
                           _vm._v(" "),
                           _c("input", {
                             directives: [
@@ -1386,6 +1396,7 @@ var render = function() {
                             ],
                             staticClass: "form-control",
                             attrs: {
+                              readonly: "",
                               type: "text",
                               placeholder: "First Name *",
                               value: ""
@@ -1423,7 +1434,7 @@ var render = function() {
                         "div",
                         { staticClass: "col-md-6 form-group" },
                         [
-                          _c("label", [_vm._v("Lastname")]),
+                          _c("label", [_vm._v("Last Name")]),
                           _vm._v(" "),
                           _c("input", {
                             directives: [
@@ -1435,7 +1446,11 @@ var render = function() {
                               }
                             ],
                             staticClass: "form-control",
-                            attrs: { type: "text", placeholder: "Last Name *" },
+                            attrs: {
+                              readonly: "",
+                              type: "text",
+                              placeholder: "Last Name *"
+                            },
                             domProps: { value: _vm.user.firstname },
                             on: {
                               input: function($event) {
@@ -1482,6 +1497,7 @@ var render = function() {
                             ],
                             staticClass: "form-control",
                             attrs: {
+                              readonly: "",
                               type: "text",
                               placeholder: "Middle Name *"
                             },
@@ -1533,6 +1549,7 @@ var render = function() {
                               ],
                               staticClass: "form-control select2-icons",
                               staticStyle: { width: "100px" },
+                              attrs: { readonly: "" },
                               on: {
                                 change: function($event) {
                                   var $$selectedVal = Array.prototype.filter
@@ -1609,7 +1626,11 @@ var render = function() {
                               }
                             ],
                             staticClass: "form-control",
-                            attrs: { type: "text", placeholder: "Phone *" },
+                            attrs: {
+                              readonly: "",
+                              type: "text",
+                              placeholder: "Phone *"
+                            },
                             domProps: { value: _vm.user.phone },
                             on: {
                               input: function($event) {
@@ -1652,6 +1673,7 @@ var render = function() {
                             ],
                             staticClass: "form-control",
                             attrs: {
+                              readonly: "",
                               type: "text",
                               placeholder: "State Of Origin *"
                             },
@@ -1707,6 +1729,7 @@ var render = function() {
                             ],
                             staticClass: "form-control",
                             attrs: {
+                              readonly: "",
                               type: "text",
                               placeholder: "Designation *"
                             },
@@ -1752,7 +1775,11 @@ var render = function() {
                             }
                           ],
                           staticClass: "form-control",
-                          attrs: { type: "text", placeholder: "Grade *" },
+                          attrs: {
+                            readonly: "",
+                            type: "text",
+                            placeholder: "Grade *"
+                          },
                           domProps: { value: _vm.user.grade },
                           on: {
                             input: function($event) {
@@ -1781,7 +1808,7 @@ var render = function() {
                               }
                             ],
                             staticClass: "form-control",
-                            attrs: { type: "date" },
+                            attrs: { readonly: "", type: "date" },
                             domProps: { value: _vm.user.dateofbirth },
                             on: {
                               input: function($event) {
@@ -1827,7 +1854,7 @@ var render = function() {
                               }
                             ],
                             staticClass: "form-control",
-                            attrs: { type: "date" },
+                            attrs: { readonly: "", type: "date" },
                             domProps: { value: _vm.user.dateof1stapp },
                             on: {
                               input: function($event) {
@@ -1870,7 +1897,7 @@ var render = function() {
                             }
                           ],
                           staticClass: "form-control",
-                          attrs: { type: "date" },
+                          attrs: { readonly: "", type: "date" },
                           domProps: { value: _vm.user.dateofpreapp },
                           on: {
                             input: function($event) {
@@ -1900,7 +1927,7 @@ var render = function() {
                             }
                           ],
                           staticClass: "form-control",
-                          attrs: { type: "date" },
+                          attrs: { readonly: "", type: "date" },
                           domProps: { value: _vm.user.dateoflastdep },
                           on: {
                             input: function($event) {
@@ -1933,7 +1960,11 @@ var render = function() {
                               }
                             ],
                             staticClass: "form-control",
-                            attrs: { type: "text", placeholder: "Office *" },
+                            attrs: {
+                              type: "text",
+                              placeholder: "Office *",
+                              readonly: ""
+                            },
                             domProps: { value: _vm.user.office },
                             on: {
                               input: function($event) {
@@ -2013,7 +2044,7 @@ var render = function() {
                             ]),
                             _vm._v(" "),
                             _c("div", { staticClass: "form-group col-md-6" }, [
-                              _c("label", [_vm._v("Name Of Beneficiaries")]),
+                              _c("label", [_vm._v("Name Of Beneficiary")]),
                               _vm._v(" "),
                               _c("input", {
                                 directives: [
@@ -2027,7 +2058,7 @@ var render = function() {
                                 staticClass: "form-control",
                                 attrs: {
                                   type: "text",
-                                  placeholder: "Name Of Beneficiaries *"
+                                  placeholder: "Name Of Beneficiary *"
                                 },
                                 domProps: {
                                   value: _vm.user.beneficiaries[index].name
@@ -2150,7 +2181,7 @@ var render = function() {
                             _vm._v(" "),
                             _c("div", { staticClass: "form-group col-md-6" }, [
                               _c("label", [
-                                _vm._v("Relationship with Life Assured")
+                                _vm._v("Relationship with Beneficiary")
                               ]),
                               _vm._v(" "),
                               _c("input", {
@@ -2165,8 +2196,7 @@ var render = function() {
                                 staticClass: "form-control",
                                 attrs: {
                                   type: "text",
-                                  placeholder:
-                                    "Relationship with life assured *"
+                                  placeholder: "Relationship with Beneficiary *"
                                 },
                                 domProps: {
                                   value: _vm.user.beneficiaries[index].rel
@@ -2680,7 +2710,7 @@ var render = function() {
                               _c(
                                 "button",
                                 {
-                                  staticClass: "btn-danger btn-sm",
+                                  staticClass: "btn-danger btn-md",
                                   on: {
                                     click: function($event) {
                                       return _vm.showBox(index)
@@ -2689,7 +2719,7 @@ var render = function() {
                                 },
                                 [
                                   _c("i", { staticClass: "feather" }, [
-                                    _vm._v("add files")
+                                    _vm._v("Add Files")
                                   ])
                                 ]
                               )
@@ -2807,7 +2837,7 @@ var staticRenderFns = [
         _vm._v(" "),
         _c("h4", [_vm._v("Lagos State Ministry Of Finance")]),
         _vm._v(" "),
-        _c("h5", [_vm._v("Welcome to Lagos State Service insurance Portal")])
+        _c("h5", [_vm._v("Welcome to Lagos State Service Insurance Portal")])
       ])
     ])
   },
@@ -2816,7 +2846,7 @@ var staticRenderFns = [
     var _h = _vm.$createElement
     var _c = _vm._self._c || _h
     return _c("div", { staticClass: "col-md-12" }, [
-      _c("h4", [_vm._v("Life Assurance Death Beneficiaries")]),
+      _c("h4", [_vm._v("Life Assurance Beneficiaries")]),
       _vm._v(" "),
       _c("hr")
     ])

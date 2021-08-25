@@ -7,7 +7,7 @@
             <div class="card-title">
               <img src="public/images/logo.png" />
               <h4>Lagos State Ministry Of Finance</h4>
-              <h5>Welcome to Lagos State Service insurance Portal</h5>
+              <h5>Welcome to Lagos State Service Insurance Portal</h5>
             </div>
           </div>
           <div class="card-content">
@@ -16,7 +16,7 @@
                 <div class="row">
                   <div class="col-md-12 form-group">
                     <label for="user-name">Title</label>
-                    <select v-model="user.title" class="form-control" style="width:100px;">
+                    <select readonly v-model="user.title" class="form-control" style="width:100px;">
                       <option value="HON" data-icon="fa fa-wordpress">Hon</option>
                       <option value="MR" data-icon="fa fa-male">Mr</option>
                       <option value="MRS" data-icon="fa fa-female">Mrs</option>
@@ -30,8 +30,9 @@
                   </div>
 
                   <div class="col-md-6 form-group">
-                    <label>Firstname</label>
+                    <label>First Name</label>
                     <input
+                      readonly
                       type="text"
                       v-model="user.surname"
                       class="form-control"
@@ -46,8 +47,9 @@
                   </div>
 
                   <div class="col-md-6 form-group">
-                    <label>Lastname</label>
+                    <label>Last Name</label>
                     <input
+                      readonly
                       type="text"
                       v-model="user.firstname"
                       class="form-control"
@@ -62,6 +64,7 @@
                   <div class="col-md-6 form-group">
                     <label>Middlename</label>
                     <input
+                      readonly
                       type="text"
                       v-model="user.middlename"
                       class="form-control"
@@ -77,6 +80,7 @@
                   <div class="col-md-6 form-group">
                     <label>Gender</label>
                     <select
+                      readonly
                       v-model="user.sex"
                       class="form-control select2-icons"
                       style="width:100px;"
@@ -93,6 +97,7 @@
                   <div class="col-md-6 form-group">
                     <label>Phone</label>
                     <input
+                      readonly
                       type="text"
                       v-model="user.phone"
                       class="form-control"
@@ -107,6 +112,7 @@
                   <div class="col-md-6 form-group">
                     <label>State Of Origin</label>
                     <input
+                      readonly
                       type="text"
                       v-model="user.state"
                       class="form-control"
@@ -126,6 +132,7 @@
                   <div class="col-md-6 form-group">
                     <label>Designation</label>
                     <input
+                      readonly
                       type="text"
                       v-model="user.designation"
                       class="form-control"
@@ -140,6 +147,7 @@
                   <div class="col-md-6 form-group">
                     <label>Grade</label>
                     <input
+                      readonly
                       type="text"
                       v-model="user.grade"
                       class="form-control"
@@ -148,7 +156,7 @@
                   </div>
                   <div class="col-md-6 form-group">
                     <label>Date Of Birth</label>
-                    <input type="date" v-model="user.dateofbirth" class="form-control" />
+                    <input readonly type="date" v-model="user.dateofbirth" class="form-control" />
                     <p
                       class="text-danger text-center"
                       v-for="(err,index) in errors.dateofbirth"
@@ -157,7 +165,7 @@
                   </div>
                   <div class="col-md-6 form-group">
                     <label>Date Of First Appointment</label>
-                    <input type="date" v-model="user.dateof1stapp" class="form-control" />
+                    <input readonly type="date" v-model="user.dateof1stapp" class="form-control" />
                     <p
                       class="text-danger text-center"
                       v-for="(err,index) in errors.dateof1stapp"
@@ -166,11 +174,11 @@
                   </div>
                   <div class="col-md-6 form-group">
                     <label>Date Of Pre Appointment</label>
-                    <input type="date" v-model="user.dateofpreapp" class="form-control" />
+                    <input readonly type="date" v-model="user.dateofpreapp" class="form-control" />
                   </div>
                   <div class="col-md-6 form-group">
                     <label>Date Of Last Deployment</label>
-                    <input type="date" v-model="user.dateoflastdep" class="form-control" />
+                    <input readonly type="date" v-model="user.dateoflastdep" class="form-control" />
                   </div>
                   <div class="col-md-6 form-group">
                     <label>Department</label>
@@ -179,6 +187,7 @@
                       v-model="user.office"
                       class="form-control"
                       placeholder="Office *"
+                      readonly
                     />
                     <p
                       class="text-danger text-center"
@@ -189,7 +198,7 @@
                 </div>
 
                 <div class="col-md-12">
-                  <h4>Life Assurance Death Beneficiaries</h4>
+                  <h4>Life Assurance Beneficiaries</h4>
                   <hr />
                 </div>
                 <p
@@ -211,12 +220,12 @@
                       <h5>Beneficiary {{index + 1}}</h5>
                     </div>
                     <div class="form-group col-md-6">
-                      <label>Name Of Beneficiaries</label>
+                      <label>Name Of Beneficiary</label>
                       <input
                         type="text"
                         v-model="user.beneficiaries[index].name"
                         class="form-control"
-                        placeholder="Name Of Beneficiaries *"
+                        placeholder="Name Of Beneficiary *"
                       />
                       <p class="text-danger text-center">{{errors[`bene${index}name`]}}</p>
                     </div>
@@ -241,12 +250,12 @@
                       <p class="text-danger text-center">{{errors[`bene${index}perc`]}}</p>
                     </div>
                     <div class="form-group col-md-6">
-                      <label>Relationship with Life Assured</label>
+                      <label>Relationship with Beneficiary</label>
                       <input
                         type="text"
                         v-model="user.beneficiaries[index].rel"
                         class="form-control"
-                        placeholder="Relationship with life assured *"
+                        placeholder="Relationship with Beneficiary *"
                       />
                       <p class="text-danger text-center">{{errors[`bene${index}rel`]}}</p>
                     </div>
@@ -357,8 +366,8 @@
                       </div>
                     </div>
                     <div class="col-md-12">
-                      <button class="btn-danger btn-sm" @click="showBox(index)">
-                        <i class="feather">add files</i>
+                      <button class="btn-danger btn-md" @click="showBox(index)">
+                        <i class="feather">Add Files</i>
                       </button>
                     </div>
                   </div>

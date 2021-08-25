@@ -19,7 +19,7 @@
                         <div class="card-title">
                           <img src="public/images/logo.png" />
                           <h4>Lagos State Ministry Of Finance</h4>
-                          <h5>Welcome to Lagos State Service insurance Portal</h5>
+                          <h5>Welcome to Lagos State Service Insurance Portal</h5>
                         </div>
                       </div>
                       <div class="card-content" v-show="oracle">

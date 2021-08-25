@@ -21,8 +21,9 @@
         </div>
       </div>
       <div class="content-body">
+        <viewClaim :claim="claim" v-show="viewBox" @close="closeViewBox"></viewClaim>
         <!-- Column selectors with Export Options and print table -->
-        <section id="column-selectors">
+        <section id="column-selectors" v-show="list">
           <div class="row">
             <div class="col-12">
               <div class="card">
@@ -40,18 +41,30 @@
                         :loading="loading"
                       >
                         <template v-slot:top>
-                          <router-link :to="{path:`/admin/addclaim`}">
-                            <v-btn color="primary" dark class="mb-2" v-bind="attrs">New Claim</v-btn>
-                          </router-link>
+                          <div style="overflow:hidden;">
+                            <div style="float:left;">
+                              <router-link :to="{path:`/admin/addclaim`}">
+                                <v-btn color="primary" dark class="mb-2" v-bind="attrs">New Claim</v-btn>
+                              </router-link>
+                            </div>
+                            <div class="form-group" style="float:right;">
+                              <select v-model="filter" class="form-control select2-icons">
+                                <option value="-1" data-icon="fa fa-male">All Claims</option>
+                                <option
+                                  v-for="(x,index) of status"
+                                  :key="index"
+                                  :value="index"
+                                >{{x}}</option>
+                              </select>
+                            </div>
+                          </div>
                         </template>
                         <template
                           v-slot:item.underwriters="{item}"
                         >{{JSON.parse(item.underwriters)[0]['name']}}</template>
                         <template v-slot:item.actions="{item}">
-                          <router-link :to="{path:`/admin/claims/${item.id}`}">
-                            <v-icon small class="mr-2">mdi-eye</v-icon>
-                          </router-link>
-                          <router-link :to="{path:`/admin/claims/${item.id}`}">
+                          <v-icon small class="mr-2" @click="setView(item)">mdi-eye</v-icon>
+                          <router-link :to="{path:`/admin/claim/${item.id}`}">
                             <v-icon small class="mr-2">mdi-pencil</v-icon>
                           </router-link>
 
@@ -71,7 +84,11 @@
   </div>
 </template>
 <script>
+import viewClaim from "./view.vue";
 export default {
+  components: {
+    viewClaim: viewClaim
+  },
   data() {
     return {
       headers: [
@@ -113,7 +130,20 @@ export default {
       total: 0,
       loading: true,
       items: [],
-      errors: []
+      errors: [],
+      claim: {},
+      veiwIndex: 0,
+      filter: "-1",
+      list: true,
+      viewBox: false,
+      status: [
+        "Submitted For Approval",
+        "Approved For Processing",
+        "Disapproved",
+        "Rejected",
+        "Processed",
+        "Paid"
+      ]
     };
   },
   watch: {
@@ -122,6 +152,9 @@ export default {
         this.getData();
       },
       deep: true
+    },
+    filter() {
+      this.getData();
     }
   },
   computed: {
@@ -139,14 +172,26 @@ export default {
       var desc = sortDesc[0];
       axios
         .get(
-          `${index_url}/api/claim?page=${page}&limit=${itemsPerPage}&sort=${sort}&desc=${desc}`
+          `${index_url}/api/claim?page=${page}&limit=${itemsPerPage}&sort=${sort}&desc=${desc}&filter=${this.filter}`
         )
         .then(resp => {
           this.items = resp.data.claims;
           this.total = resp.data.total;
         });
     },
-
+    setView(item) {
+      this.veiwIndex = this.items.indexOf(item);
+      this.claim = item;
+      this.list = false;
+      this.viewBox = true;
+    },
+    closeViewBox(claim) {
+      if (!!claim) {
+        this.items[this.veiwIndex] = claim;
+      }
+      this.list = true;
+      this.viewBox = false;
+    },
     deleteItem() {}
   }
 };

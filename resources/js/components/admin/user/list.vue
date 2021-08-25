@@ -7,7 +7,7 @@
         <div class="content-header-left col-md-9 col-12 mb-2">
           <div class="row breadcrumbs-top">
             <div class="col-12">
-              <h2 class="content-header-title float-left mb-0">Staffs</h2>
+              <h2 class="content-header-title float-left mb-0">Staff</h2>
             </div>
           </div>
         </div>
@@ -191,7 +191,7 @@
             <div class="col-12">
               <div class="card">
                 <div class="card-header">
-                  <h4 class="card-title">All Staffs Table</h4>
+                  <h4 class="card-title">All Staff Table</h4>
                   <router-link :to="{path:'/admin/adduser'}">
                     <v-btn>Upload Nominal</v-btn>
                   </router-link>
@@ -218,13 +218,13 @@
                               @click="verify($event,setStatus)"
                               v-show="approvalButton"
                               v-if="permissions('user','update')"
-                            >{{ approvalText }} Staffs</v-btn>
+                            >{{ approvalText }} Staff</v-btn>
 
                             <div class="form-group" style="float:right;">
                               <select v-model="filter" class="form-control select2-icons">
-                                <option value="all" data-icon="fa fa-male">All staffs</option>
-                                <option value="verified">Approved Staffs</option>
-                                <option value="unverified">Unapproved Staffs</option>
+                                <option value="all" data-icon="fa fa-male">All staff</option>
+                                <option value="verified">Approved Staff</option>
+                                <option value="unverified">Unapproved Staff</option>
                                 <option value="admins">Administrators</option>
                               </select>
                             </div>

@@ -54,7 +54,7 @@ class PolicyController extends Controller
         //
         $input = $request->all();
         // $errors = "";
-        $rules = ['policy_number' => 'Required', 'premium' => 'required', 'insurance_class' => 'required', 'sum_insured' => 'required', 'start_date' => 'required', 'expiry_date' => 'required', 'underwriters' => 'required',];
+        $rules = ['premium' => 'required', 'insurance_class' => 'required', 'sum_insured' => 'required', 'start_date' => 'required', 'expiry_date' => 'required', 'underwriters' => 'required',];
         $validator = Validator::make($input, $rules);
         if ($validator->fails()) {
             $status = false;
