@@ -4,6 +4,10 @@
   >
     <div class="app-content contianer">
       <div class="content-wrapper">
+        <marquee style="font-weight:bold; color:red;">
+          LAPSI is Live, we are currently uploading the nominal role, Your MDA
+          will notify you on readiness.
+        </marquee>
         <div class="content-header row"></div>
         <div class="content-body">
           <section class="row flexbox-container">
@@ -12,6 +16,7 @@
                 <div class="row m-0">
                   <div class="col-lg-6 d-lg-block d-none text-center align-self-center px-1 py-0">
                     <img src="public/app-assets/images/pages/login.png" alt="branding logo" />
+                    @change="setPolicy()"
                   </div>
                   <div class="col-lg-6 col-12 p-0 login-box">
                     <div class="card rounded-1 mb-0 px-2">
@@ -35,6 +40,7 @@
                                 v-model="oracleId"
                                 placeholder="Oracle Id"
                                 required
+                                readonly
                               />
                               <div v-if="'oracle_id' in errors">
                                 <i
@@ -48,6 +54,7 @@
                             </fieldset>
                             <div class="col-md-12">
                               <button
+                                disabled
                                 type="submit"
                                 @click="verifyId($event)"
                                 class="btn btn-primary btn-inline"
