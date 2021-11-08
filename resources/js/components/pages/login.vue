@@ -16,7 +16,6 @@
                 <div class="row m-0">
                   <div class="col-lg-6 d-lg-block d-none text-center align-self-center px-1 py-0">
                     <img src="public/app-assets/images/pages/login.png" alt="branding logo" />
-                    @change="setPolicy()"
                   </div>
                   <div class="col-lg-6 col-12 p-0 login-box">
                     <div class="card rounded-1 mb-0 px-2">
@@ -39,8 +38,7 @@
                                 id="user-name"
                                 v-model="oracleId"
                                 placeholder="Oracle Id"
-                                required
-                                readonly
+                                requireds
                               />
                               <div v-if="'oracle_id' in errors">
                                 <i
