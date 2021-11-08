@@ -38,7 +38,7 @@
                                 id="user-name"
                                 v-model="oracleId"
                                 placeholder="Oracle Id"
-                                requireds
+                                required
                               />
                               <div v-if="'oracle_id' in errors">
                                 <i
